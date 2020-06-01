@@ -104,12 +104,16 @@ namespace ГенерацияТВ
             {
                 int res;
 
-                do
+                if (to - from < 4)
                 {
-                    res = r.Next(from, to);
-                } while (buff.Contains(res));
-                buff.add(res);
-                
+                    do
+                    {
+                        res = r.Next(from, to);
+                    } while (buff.Contains(res));
+                    buff.add(res);
+                }
+                else res = r.Next(from, to);
+
                 return res;
             }
 
