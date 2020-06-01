@@ -50,11 +50,15 @@ namespace ГенерацияТВ
             Paragraph paragraph;
             randBuff buff = new randBuff();
             Random r;
+            int variantIterator;
             IExcel.Application excel;
+
             public Gen(int countVariants)
             {
                 r = new Random(System.DateTime.Now.Millisecond);
+
                 excel = new IExcel.Application();
+
                 SaveFileDialog saveFile = new SaveFileDialog();
                 saveFile.DefaultExt = ".docx";
                 saveFile.AddExtension = true;
@@ -71,10 +75,10 @@ namespace ГенерацияТВ
                 // создаём документ
                 document = DocX.Create(filename);
 
-                for (int i = 1; i <= countVariants; i++)
+                for (int variantIterator = 1; variantIterator <= countVariants; variantIterator++)
                 {
                     paragraph = document.InsertParagraph();
-                    paragraph.Append(System.Convert.ToString(i) + "  ВАРИАНТ").Font("Century Schoolbook").FontSize(16).Bold().Alignment = Alignment.center;
+                    paragraph.Append(System.Convert.ToString(variantIterator) + "  ВАРИАНТ").Font("Century Schoolbook").FontSize(16).Bold().Alignment = Alignment.center;
                     paragraph.AppendLine();
 
                     gen1();
@@ -96,7 +100,7 @@ namespace ГенерацияТВ
                     gen17();
                     gen18();
 
-                    if (i != countVariants) paragraph.InsertPageBreakAfterSelf();
+                    if (variantIterator != countVariants) paragraph.InsertPageBreakAfterSelf();
                     paragraph = document.InsertParagraph();
                 }
                 document.Save();
