@@ -119,7 +119,7 @@ namespace ГенерацияТВ
                 int[] mas = new int[5] { 10, 20, 25, 50, 100 };
 
                 all = mas[randInt(0, 4)];
-                part1 = randInt(1, all - 1);
+                part1 = randInt(2, all - 2);
                 part2 = all - part1;
 
                 paragraph = document.InsertParagraph();
@@ -129,10 +129,19 @@ namespace ГенерацияТВ
 
             private void gen2()
             {
+                int all, part1, part2, part3, quest;
+                int[] mas = new int[4] { 10, 20, 25, 50};
+                
+                all = mas[randInt(0, 3)];
+                part1 = randInt(3, all - 1);                            
+                part2 = all - part1;
+                part3 = randInt(4, all/2);
+                quest = randInt(2, part3 - 2);
+
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("2.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-
-
+                paragraph.Append("В урне " + part1.ToString() +" белых и "+ part2.ToString() +" черных шаров. Наудачу  отобраны "+ part3.ToString() +" шаров.Найти вероятность того, что среди  них окажется ровно "+ quest.ToString() +" белых шаров.").Font("Century Schoolbook").FontSize(12);
+                // otvetC( part1,quest)*C(part2,part3 - quest)/C(all,part3)
             }
 
             private void gen3()
@@ -145,10 +154,19 @@ namespace ГенерацияТВ
 
             private void gen4()
             {
+                int all, part1, part2, quest;
+                int[] mas = new int[4] { 10, 20, 25, 50 };
+
+                all = mas[randInt(0, 3)];
+                part2 = randInt(2, all/2);
+                part1 = all - part2;
+                quest = randInt(2, part2 * 2);
+                quest = quest % 2 == 0 ? quest : quest - 1;
+
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("4.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-
-
+                paragraph.Append("В партии готовой продукции, состоящей из " + all.ToString() + " изделий, " + part2.ToString() + " брако­ванных. Найти вероятность того, что при случайном выборе " + quest.ToString() + "изделий число бракованных и небракованных изделий  окажется поровну.").Font("Century Schoolbook").FontSize(12);
+                // otvetC( part1,quest/2)*C(part2, quest/2)/C(all, quest)
             }
 
             private void gen5()
@@ -161,6 +179,11 @@ namespace ГенерацияТВ
 
             private void gen6()
             {
+
+
+
+
+
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("6.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
 
