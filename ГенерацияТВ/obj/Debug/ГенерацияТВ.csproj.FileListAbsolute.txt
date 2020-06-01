@@ -1,0 +1,12 @@
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.csprojAssemblyReference.cache
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.Form1.resources
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.Properties.Resources.resources
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.csproj.GenerateResource.cache
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\bin\Debug\ГенерацияТВ.exe.config
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\bin\Debug\ГенерацияТВ.exe
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\bin\Debug\ГенерацияТВ.pdb
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.exe
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.pdb
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\bin\Debug\Xceed.Document.NET.dll
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\bin\Debug\Xceed.Words.NET.dll
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.csproj.CopyComplete
