@@ -298,7 +298,7 @@ namespace ГенерацияТВ
                 double result = (excel.WorksheetFunction.NormSDist((1 - a) / q) - 0.5) - (excel.WorksheetFunction.NormSDist((0.3 - a) / q) - 0.5);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("16.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append(" E - нормально распределенная случайная величина с парамет­рами а=" + a.ToString() + "  q=" + q.ToString() + ".  Найти Р(0,3<E<1).").FontSize(12);
+                paragraph.Append("E - нормально распределенная случайная величина с парамет­рами а=" + a.ToString() + "  q=" + q.ToString() + ".  Найти Р(0,3<E<1).").Font("Century Schoolbook").FontSize(12);
                 if (result > 1) MessageBox.Show("Говно");
 
             }
@@ -325,7 +325,7 @@ namespace ГенерацияТВ
                 part3 = Math.Abs(part3 / 10d - part6);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("18.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append(" Дана таблица распределения вероятностей двумерной случай­ной величины  (E,n?)").FontSize(12);
+                paragraph.Append("Дана таблица распределения вероятностей двумерной случай­ной величины (E,n?)").Font("Century Schoolbook").FontSize(12);
                 Table table = document.AddTable(3, 4);
                 table.Alignment = Alignment.left;
                 table.Rows[0].Cells[0].Paragraphs[0].Append("E,n");
@@ -341,11 +341,9 @@ namespace ГенерацияТВ
                 table.Rows[2].Cells[2].Paragraphs[0].Append(part5.ToString());
                 table.Rows[2].Cells[3].Paragraphs[0].Append(part6.ToString());
 
-                paragraph.InsertTableAfterSelf(table);
-
+                paragraph = document.InsertParagraph();
+                paragraph.InsertTableBeforeSelf(table);
                 
-
-
             }
 
 
