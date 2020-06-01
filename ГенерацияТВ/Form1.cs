@@ -164,6 +164,7 @@ namespace ГенерацияТВ
                 int[] mas = new int[4] { 10, 20, 25, 50 };              
                 all = mas[r.Next(0, 3)];
                 part2 = r.Next(2, all/2);
+
                 part1 = all - part2;
                 quest = r.Next(2, part2 * 2);
                 quest = quest % 2 == 0 ? quest : quest - 1;
