@@ -25,3 +25,4 @@ F:\GitHu\TerVerGeneration\ГенерацияТВ\bin\Debug\Xceed.Document.NET.dl
 F:\GitHu\TerVerGeneration\ГенерацияТВ\bin\Debug\Xceed.Words.NET.dll
 F:\GitHu\TerVerGeneration\ГенерацияТВ\obj\Debug\ГенерацияТВ.csproj.CopyComplete
 F:\GitHu\TerVerGeneration\ГенерацияТВ\obj\Debug\ГенерацияТВ.csproj.ResolveComReference.cache
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.csproj.ResolveComReference.cache
