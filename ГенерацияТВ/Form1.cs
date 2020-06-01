@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Xceed.Words.NET;
 using Xceed.Document.NET;
+using Microsoft.Office.Interop.Excel;
+using IExcel = Microsoft.Office.Interop.Excel;
 
 namespace ГенерацияТВ
 {
@@ -116,7 +118,7 @@ namespace ГенерацияТВ
 
                 return res;
             }
-
+     
             private void gen1()
             {
                 int all, part1, part2;
@@ -135,16 +137,16 @@ namespace ГенерацияТВ
             {
                 int all, part1, part2, part3, quest;
                 int[] mas = new int[4] { 10, 20, 25, 50};
-                
-                all = mas[randInt(0, 3)];
-                part1 = randInt(3, all - 1);                            
+               
+                all = mas[r.Next(0, 3)];
+                part1 = r.Next(3, all - 1);                            
                 part2 = all - part1;
-                part3 = randInt(4, all/2);
-                quest = randInt(2, part3 - 2);
+                part3 = r.Next(4, all/2);
+                quest = r.Next(2, part1 > part3 ? part3 - 2 : part1 - 1);
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("2.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("В урне " + part1.ToString() +" белых и "+ part2.ToString() +" черных шаров. Наудачу  отобраны "+ part3.ToString() +" шаров.Найти вероятность того, что среди  них окажется ровно "+ quest.ToString() +" белых шаров.").Font("Century Schoolbook").FontSize(12);
+                paragraph.Append("В урне " + part1.ToString() +" белых и "+ part2.ToString() +" черных шаров. Наудачу отобраны "+ part3.ToString() +" шаров. Найти вероятность того, что среди них окажется ровно "+ quest.ToString() +" белых шаров.").Font("Century Schoolbook").FontSize(12);
                 // otvetC( part1,quest)*C(part2,part3 - quest)/C(all,part3)
             }
 
@@ -159,17 +161,16 @@ namespace ГенерацияТВ
             private void gen4()
             {
                 int all, part1, part2, quest;
-                int[] mas = new int[4] { 10, 20, 25, 50 };
-
-                all = mas[randInt(0, 3)];
-                part2 = randInt(2, all/2);
+                int[] mas = new int[4] { 10, 20, 25, 50 };              
+                all = mas[r.Next(0, 3)];
+                part2 = r.Next(2, all/2);
                 part1 = all - part2;
-                quest = randInt(2, part2 * 2);
+                quest = r.Next(2, part2 * 2);
                 quest = quest % 2 == 0 ? quest : quest - 1;
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("4.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("В партии готовой продукции, состоящей из " + all.ToString() + " изделий, " + part2.ToString() + " брако­ванных. Найти вероятность того, что при случайном выборе " + quest.ToString() + "изделий число бракованных и небракованных изделий  окажется поровну.").Font("Century Schoolbook").FontSize(12);
+                paragraph.Append("В партии готовой продукции, состоящей из " + all.ToString() + " изделий, " + part2.ToString() + " брако­ванных. Найти вероятность того, что при случайном выборе " + quest.ToString() + " изделий число бракованных и не бракованных изделий окажется поровну.").Font("Century Schoolbook").FontSize(12);
                 // otvetC( part1,quest/2)*C(part2, quest/2)/C(all, quest)
             }
 
@@ -183,15 +184,16 @@ namespace ГенерацияТВ
 
             private void gen6()
             {
-
-
+                double part1, part2;
+                part1 = (double)randInt(1, 9) / 10d;
+                part2 = (double)randInt(1, 9) / 10d;
 
 
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("6.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-
-
+                paragraph.Append("Произведен залп из двух орудий. Вероятность попадания из первого орудия равна " + part1.ToString() + ", из второго " + part2.ToString() + ". Найти вероятность поражения цели.").Font("Century Schoolbook").FontSize(12);
+                //otvet = 1-(1-part1)*(1-part2)
             }
 
             private void gen7()
@@ -204,10 +206,15 @@ namespace ГенерацияТВ
 
             private void gen8()
             {
+                double part1, part2, part3;
+                part1 = (double)randInt(1, 9) / 100d;
+                part2 = (double)randInt(1, 9) / 100d;
+                part3 = (double)randInt(1, 9) / 100d;
+
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("8.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-
-
+                paragraph.Append("Рабочий обслуживает 3 автомата. Вероятность брака для пер­вого автомата равна " + part1.ToString() + "; для второго " + part2.ToString() + "; для третьего "+part3.ToString()+ ". Производи­тельность всех автоматов одинакова. Изготовленные детали попадают на общий конвейер. Определить вероятность того, что взятая наугад деталь будет годной.").Font("Century Schoolbook").FontSize(12);
+                //otvet= 1-(1/3*part1+1/3*part2+1/3*part3)
             }
 
             private void gen9()
@@ -220,10 +227,17 @@ namespace ГенерацияТВ
 
             private void gen10()
             {
+                double part1, part2, part3;
+                part1 = r.Next(3, 15);
+                part2 = r.Next(1, (int)part1 - 1);
+                part3 = (double)r.Next(15, 35)/100d;
+
+
+
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("10.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-
-
+                paragraph.Append("Рабочий обслуживает 3 автомата. Вероятность брака для пер­вого автомата равна " + part1.ToString() + "; для второго " + part2.ToString() + "; для третьего " + part3.ToString() + ". Производи­тельность всех автоматов одинакова. Изготовленные детали попадают на общий конвейер. Определить вероятность того, что взятая наугад деталь будет годной.").Font("Century Schoolbook").FontSize(12);
+                //otvet = C(part1,part2)*pow(part3,part2)*pow(1-part3,part1-part2)
             }
 
             private void gen11()
