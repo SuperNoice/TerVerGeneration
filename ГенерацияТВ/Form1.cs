@@ -47,16 +47,18 @@ namespace ГенерацияТВ
             DocX document;
             Paragraph paragraph;
             randBuff buff = new randBuff();
+            Random r;
 
             public Gen(int countVariants)
             {
+                r = new Random(System.DateTime.Now.Millisecond);
                 SaveFileDialog saveFile = new SaveFileDialog();
                 saveFile.DefaultExt = ".docx";
                 saveFile.AddExtension = true;
                 saveFile.Title = "Сохранить как...";
                 saveFile.OverwritePrompt = true;
                 saveFile.Filter = "Text files(*.docx)|*.docx|All files(*.*)|*.*";
-
+                
                 if (saveFile.ShowDialog() == DialogResult.Cancel)
                     return;
 
@@ -98,22 +100,31 @@ namespace ГенерацияТВ
                 MessageBox.Show("Файл сохранен");
             }
 
+            int randInt(int from, int to)
+            {
+                int res;
+
+                do
+                {
+                    res = r.Next(from, to);
+                } while (buff.Contains(res));
+                buff.add(res);
+                
+                return res;
+            }
+
             private void gen1()
             {
                 int all, part1, part2;
                 int[] mas = new int[5] { 10, 20, 25, 50, 100 };
-                Random r = new Random(System.DateTime.Now.Millisecond);
-                do
-                {
-                    all = mas[r.Next(0, 4)];
-                    part1 = r.Next(1, all - 1);
-                } while (buff.Contains(all) || buff.Contains(part1));
-                buff.add(all); buff.add(part1);
+
+                all = mas[randInt(0, 4)];
+                part1 = randInt(1, all - 1);
                 part2 = all - part1;
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("1.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("В урне " + System.Convert.ToString(all) + " шаров: " + System.Convert.ToString(part1) + " белых и " + System.Convert.ToString(part2) + " черных. Из урны сразу вынимают два шара. Какова вероятность, что оба шара окажутся а) белыми, б) черными, в) по крайней мере один шар будет белым.").Font("Century Schoolbook").FontSize(12);
+                paragraph.Append("В урне " + all.ToString() + " шаров: " + part1.ToString() + " белых и " + part2.ToString() + " черных. Из урны сразу вынимают два шара. Какова вероятность, что оба шара окажутся а) белыми, б) черными, в) по крайней мере один шар будет белым.").Font("Century Schoolbook").FontSize(12);
             }
 
             private void gen2()
@@ -262,7 +273,7 @@ namespace ГенерацияТВ
 
             int countVariants = System.Convert.ToInt32(variantTextBox.Text);
 
-            if (countVariants < 1) { MessageBox.Show("Невнрное кол-во вариантов!"); return; }
+            if (countVariants < 1) { MessageBox.Show("Неверное кол-во вариантов!"); return; }
 
             Gen gen = new Gen(countVariants);
 

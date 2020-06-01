@@ -10,3 +10,4 @@ C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\De
 C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\bin\Debug\Xceed.Document.NET.dll
 C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\bin\Debug\Xceed.Words.NET.dll
 C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.csproj.CopyComplete
+C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.csproj.CoreCompileInputs.cache
