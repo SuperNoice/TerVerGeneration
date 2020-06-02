@@ -286,9 +286,16 @@ namespace ГенерацияТВ
 
             private void gen15()
             {
+                double all, part1, part2;
+                all = r.Next(20, 50);
+                part1 = r.Next(10, (int)(all - 2))*100d;
+                all *= 100;
+                part2 = (double)r.Next(1, 9) / 10d;
+                double x = (part1 - all * part2) / Math.Sqrt(all * part2 * (1 - part2));
+                double result = excel.WorksheetFunction.Norm_S_Dist(x,false) / Math.Sqrt(all * part2 * (1 - part2));
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("15.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-
+                paragraph.Append("Вероятность наступления события А в одном опыте равна " + part2.ToString() + ". Найти вероятность того, что событие А наступит " + part1.ToString() + " раз в "+all.ToString()+ " опытах.").Font("Century Schoolbook").FontSize(12);
 
             }
 
@@ -302,21 +309,31 @@ namespace ГенерацияТВ
                 double result = (excel.WorksheetFunction.NormSDist((1 - a) / q) - 0.5) - (excel.WorksheetFunction.NormSDist((0.3 - a) / q) - 0.5);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("16.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("E - нормально распределенная случайная величина с парамет­рами а=" + a.ToString() + "  q=" + q.ToString() + ".  Найти Р(0,3<E<1).").Font("Century Schoolbook").FontSize(12);
+                paragraph.Append("E - нормально распределенная случайная величина с парамет­рами а=" + a.ToString() + "  q=" + q.ToString() + ". Найти Р(0,3<E<1).").Font("Century Schoolbook").FontSize(12);
                 if (result > 1) MessageBox.Show("Говно");
 
             }
 
             private void gen17()
             {
+                double all, part1, part2, result;
+                all = r.Next(50, 100);
+                part1 = (double)r.Next(1, 9) / 10d;
+                part2 = (double)r.Next(10, (int)(all - 1)) * 100;
+                all *= 100;
+                double x1, x2;
+                x1 = (part2 - all * part1) / Math.Sqrt(all * part1 * (1 - part1));
+                x2 = (0 - all * part1) / Math.Sqrt(all * part1 * (1 - part1));
+                result = (excel.WorksheetFunction.Norm_S_Dist(x1,true) - 0.5) - (excel.WorksheetFunction.NormSDist(x2) - 0.5);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("17.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                
+                paragraph.Append("Вероятность появления события в каждом из " + all.ToString() + " независимых испытании постоянна и равна " + part1.ToString() + ". Найти вероятность того, что событие появится не более чем "+part2.ToString()+" раз.").Font("Century Schoolbook").FontSize(12);
+                if (result > 1) MessageBox.Show("Говно");
             }
 
             private void gen18()
             {
-                double part1, part2, part3, part4, part5, part6,Mn,ME,Dn,DE,ME0n;
+                double part1, part2, part3, part4, part5, part6, Mn, ME, Dn, DE, MEn, DEn;
 
                 part1 = r.Next(1, 8);
                 part2 = r.Next(1, 10 - (int)part1);
@@ -347,7 +364,14 @@ namespace ГенерацияТВ
 
                 paragraph = document.InsertParagraph();
                 paragraph.InsertTableBeforeSelf(table);
-                
+                ME = part4 + part5 + part6;
+                DE = part4 + part5 + part6 - ME * ME;
+                Mn = (part1 + part4) * (-1) + part3 + part6;
+                Dn = (part1 + part4) - Mn * Mn;
+                MEn = 1 * (-1) * part4 + 1 * 1 + part6;
+                DEn = 1 * 1 * part4 + 1 * 1 + part6 - MEn * MEn;
+
+
             }
 
 
