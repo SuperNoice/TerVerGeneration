@@ -11,6 +11,8 @@ using Xceed.Words.NET;
 using Xceed.Document.NET;
 using Microsoft.Office.Interop.Excel;
 using IExcel = Microsoft.Office.Interop.Excel;
+using System.Diagnostics;
+
 
 namespace ГенерацияТВ
 {
@@ -177,7 +179,7 @@ namespace ГенерацияТВ
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("4.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("В партии готовой продукции, состоящей из " + all.ToString() + " изделий, " + part2.ToString() + " брако­ванных. Найти вероятность того, что при случайном выборе " + quest.ToString() + " изделий число бракованных и не бракованных изделий окажется поровну.").Font("Century Schoolbook").FontSize(12);
+                paragraph.Append("В партии готовой продукции, состоящей из " + all.ToString() + " изделий, " + part2.ToString() + " бракованных. Найти вероятность того, что при случайном выборе " + quest.ToString() + " изделий число бракованных и не бракованных изделий окажется поровну.").Font("Century Schoolbook").FontSize(12);
                 double result = (double)excel.WorksheetFunction.Combin(part1, quest / 2) * (double)excel.WorksheetFunction.Combin(part2, quest / 2) / (double)excel.WorksheetFunction.Combin(all, quest);
                 if (result > 1) MessageBox.Show("Говно");
             }
@@ -222,7 +224,7 @@ namespace ГенерацияТВ
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("8.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Рабочий обслуживает 3 автомата. Вероятность брака для пер­вого автомата равна " + part1.ToString() + "; для второго " + part2.ToString() + "; для третьего "+part3.ToString()+ ". Производи­тельность всех автоматов одинакова. Изготовленные детали попадают на общий конвейер. Определить вероятность того, что взятая наугад деталь будет годной.").Font("Century Schoolbook").FontSize(12);
+                paragraph.Append("Рабочий обслуживает 3 автомата. Вероятность брака для первого автомата равна " + part1.ToString() + "; для второго " + part2.ToString() + "; для третьего "+part3.ToString()+ ". Производительность всех автоматов одинакова. Изготовленные детали попадают на общий конвейер. Определить вероятность того, что взятая наугад деталь будет годной.").Font("Century Schoolbook").FontSize(12);
                 double result = 1 - (1 / 3 * part1 + 1 / 3 * part2 + 1 / 3 * part3);
                 if (result > 1) MessageBox.Show("Говно");
             }
@@ -302,7 +304,7 @@ namespace ГенерацияТВ
                 double result = (excel.WorksheetFunction.NormSDist((1 - a) / q) - 0.5) - (excel.WorksheetFunction.NormSDist((0.3 - a) / q) - 0.5);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("16.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("E - нормально распределенная случайная величина с парамет­рами а=" + a.ToString() + "  q=" + q.ToString() + ".  Найти Р(0,3<E<1).").Font("Century Schoolbook").FontSize(12);
+                paragraph.Append("E - нормально распределенная случайная величина с параметрами а=" + a.ToString() + "  q=" + q.ToString() + ".  Найти Р(0,3<E<1).").Font("Century Schoolbook").FontSize(12);
                 if (result > 1) MessageBox.Show("Говно");
 
             }
@@ -329,7 +331,7 @@ namespace ГенерацияТВ
                 part3 = Math.Abs(part3 / 10d - part6);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("18.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Дана таблица распределения вероятностей двумерной случай­ной величины (E,n?)").Font("Century Schoolbook").FontSize(12);
+                paragraph.Append("Дана таблица распределения вероятностей двумерной случайной величины (E,n?)").Font("Century Schoolbook").FontSize(12);
                 Table table = document.AddTable(3, 4);
                 table.Alignment = Alignment.left;
                 table.Rows[0].Cells[0].Paragraphs[0].Append("E,n");
@@ -347,6 +349,7 @@ namespace ГенерацияТВ
 
                 paragraph = document.InsertParagraph();
                 paragraph.InsertTableBeforeSelf(table);
+
                 
             }
 
