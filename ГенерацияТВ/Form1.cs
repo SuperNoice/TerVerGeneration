@@ -255,34 +255,99 @@ namespace ГенерацияТВ
 
             private void gen11()
             {
+                double part1, part2, part3, part4, part5;
+                part1 = r.Next(1, 8);
+                part2 = r.Next(1, 10 - (int)part1);
+                part3 = 10 - part1 - part2;
+                part4 = r.Next(0, (int)part1) / 10d;
+                part1 = Math.Abs(part1 / 10d - part4);
+                part5 = r.Next(0, (int)part2) / 10d;
+                part2 = Math.Abs(part2 / 10d - part5);
+                part3 /= 10d;
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("11.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
+                paragraph.Append("Случайная величина ξ имеет распределения вероятностей, представленное таблицей:").Font("Century Schoolbook").FontSize(12);
+                Table table = document.AddTable(2, 6);
+                table.Alignment = Alignment.left;
+                table.Rows[0].Cells[0].Paragraphs[0].Append("ξ");
+                table.Rows[1].Cells[0].Paragraphs[0].Append("P(x)");
+                table.Rows[0].Cells[1].Paragraphs[0].Append("-1");
+                table.Rows[0].Cells[2].Paragraphs[0].Append("0");
+                table.Rows[0].Cells[3].Paragraphs[0].Append("1");
+                table.Rows[0].Cells[4].Paragraphs[0].Append("2");
+                table.Rows[0].Cells[5].Paragraphs[0].Append("3");
+                table.Rows[1].Cells[1].Paragraphs[0].Append(part1.ToString());
+                table.Rows[1].Cells[2].Paragraphs[0].Append(part2.ToString());
+                table.Rows[1].Cells[3].Paragraphs[0].Append(part3.ToString());
+                table.Rows[1].Cells[4].Paragraphs[0].Append(part4.ToString());
+                table.Rows[1].Cells[5].Paragraphs[0].Append(part5.ToString());
+
+                paragraph = document.InsertParagraph();
+                paragraph.InsertTableBeforeSelf(table);
+                paragraph.Append("Построить многоугольник распределения и найти функцию распределения F(x).").Font("Century Schoolbook").FontSize(12);
 
 
+
+
+                string resultf = "φ(х) = 0,при x≤-1\nφ(х) = " + part1.ToString() + ",при -1<x≤0 \nφ(х) = " + (part1 + part2).ToString() + ",при 0<x≤1\nφ(х) = " + (part1 + part2 + part3).ToString() + ",при 1<x≤2" +
+                    "\nφ(х) = " + (part1 + part2 + part3 + part4).ToString() + ",при 2<x≤3\nφ(х) = " + (part1 + part2 + part3 + part4 + part5).ToString() + ",при x>3";
+
+
+
+
+                paragraph = document.InsertParagraph();
+                paragraph.AppendLine("12.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
+                paragraph.Append("Найти М(ξ), D(ξ), σ(ξ) случайной величины ξ примера 11.").Font("Century Schoolbook").FontSize(12);
+                double ME, DE, q;
+                ME = -1 * part1 + 0 * part2 + 1 * part3 + 2 * part4 + 3 * part5;
+                DE =  1*part1 + 0 * part2 + 1 * part3 + 4 * part4 + 9 * part5-ME*ME;
+                q = Math.Sqrt(DE);
             }
             
             private void gen12()
             {
                
            
-                paragraph = document.InsertParagraph();
-                paragraph.AppendLine("12.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                
+                            
             }
 
             private void gen13()
             {
+                string[] f1 = new string[] { "-π/2", "-π/3", "-π/4", "-π/6","0"};
+                string[] f2 = new string[] { "π/2", "π/3", "π/4", "π/6" };
+                int part1 = r.Next(0, 4);
+                int part2 = r.Next(0, 3);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("13.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-
-
+                paragraph.Append("Задана плотность распределения непрерывной случайной величины ξ:"
+                + "\n φ(х) = K*cos(x), ∀x ∈ ("+f1[part1]+";" + f2[part2]+ "]\n φ(х) = 0, ∀x ∉ (" + f1[part1] + ";" + f2[part2] + "]\nНайти K и функцию распределения F(x).").Font("Century Schoolbook").FontSize(12);
+                string[,] kresultm = new string[,] { { "1/2", "-2√3 + 4", "√2 +2","2/3"},
+                                                    {"4-2√3","√3/3","-2√2 + 2√3","-1+√3"},
+                                                    {"2-√2","2√3-2√2","√2/2","-2+2√2" },
+                                                    {"2/3","√3 -1","2√2-2","1" },
+                                                    {"1","2√3/3","√2","2" } };
+                string kresult = kresultm[part1, part2];
+                string fresult = "φ(х) = 0,при x≤" + f1[part1] +
+                                 ",\nφ(х) =" + kresult + "sin(x),при " + f1[part1] + " < x ≤ " + f2[part2] + ",\nφ(х) =1,при x > " + f2[part2];
+                double ME, DE, q;
+                paragraph = document.InsertParagraph();
+                paragraph.AppendLine("14.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
+                paragraph.Append("ξ - непрерывная случайная величина примера 13. Найти М(ξ), D(ξ), σ(ξ).").Font("Century Schoolbook").FontSize(12);
+                double[] f1num=new double[] { -Math.PI/2,-Math.PI/3,-Math.PI/4,-Math.PI/6,0 };
+                double[] f2num = new double[] { Math.PI / 2, Math.PI / 3, Math.PI / 4, Math.PI / 6};
+                double[,] knum = new double[,] { { 1/2, -2*Math.Sqrt(3) + 4, Math.Sqrt(2) +2,2/3},
+                                                 {4-2*Math.Sqrt(3),Math.Sqrt(3)/3,-2*Math.Sqrt(2) + 2*Math.Sqrt(3),-1*Math.Sqrt(3)},
+                                                 {2-Math.Sqrt(2),2*Math.Sqrt(3)-2*Math.Sqrt(2),Math.Sqrt(2)/2,-2+2*Math.Sqrt(2) },
+                                                 {2/3,Math.Sqrt(3) -1,2*Math.Sqrt(2)-2,1 },
+                                                    {1,2*Math.Sqrt(3)/3,Math.Sqrt(2),2 } };
+                ME = knum[part1, part2] * (f2num[part2] * Math.Sin(f2num[part2]) + Math.Cos(f2num[part2]) - (f1num[part1] * Math.Sin(f1num[part1]) + Math.Cos(f1num[part1])));
+                DE = knum[part1, part2] * (f2num[part2] * f2num[part2] * Math.Sin(f2num[part2]) + 2 * f2num[part2] * Math.Cos(f2num[part2]) + 2 * Math.Sin(f2num[part2]) - (f1num[part1] * f2num[part1] * Math.Sin(f1num[part1]) + 2 * f1num[part1] * Math.Cos(f1num[part1]) + 2 * Math.Sin(f1num[part1])))-ME*ME;
+                q = Math.Sqrt(DE);
             }
 
             private void gen14()
             {
-                paragraph = document.InsertParagraph();
-                paragraph.AppendLine("14.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-
+                
 
             }
 
@@ -303,6 +368,7 @@ namespace ГенерацияТВ
 
             private void gen16()
             {
+                
                 double a, q;
 
                 a = (double)randInt(5, 20);
@@ -312,7 +378,7 @@ namespace ГенерацияТВ
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("16.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
 
-                paragraph.Append("E - нормально распределенная случайная величина с парамет­рами а=" + a.ToString() + "  q=" + q.ToString() + ". Найти Р(0,3<E<1).").Font("Century Schoolbook").FontSize(12);
+                paragraph.Append("ξ - нормально распределенная случайная величина с парамет­рами а=" + a.ToString() + "  q=" + q.ToString() + ". Найти Р(0,3<ξ<1).").Font("Century Schoolbook").FontSize(12);
 
                 if (result > 1) MessageBox.Show("Говно");
 
@@ -350,10 +416,10 @@ namespace ГенерацияТВ
                 part3 = Math.Abs(part3 / 10d - part6);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("18.  ").Font("Century Schoolbook").FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Дана таблица распределения вероятностей двумерной случайной величины (E,n?)").Font("Century Schoolbook").FontSize(12);
+                paragraph.Append("Дана таблица распределения вероятностей двумерной случайной величины (ξ,n?)").Font("Century Schoolbook").FontSize(12);
                 Table table = document.AddTable(3, 4);
                 table.Alignment = Alignment.left;
-                table.Rows[0].Cells[0].Paragraphs[0].Append("E,n");
+                table.Rows[0].Cells[0].Paragraphs[0].Append("ξ\n");
                 table.Rows[0].Cells[1].Paragraphs[0].Append("-1");
                 table.Rows[0].Cells[2].Paragraphs[0].Append("0");
                 table.Rows[0].Cells[3].Paragraphs[0].Append("1");
