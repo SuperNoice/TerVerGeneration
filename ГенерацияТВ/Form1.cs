@@ -414,9 +414,10 @@ namespace ГенерацияТВ
                 double all, part1, part2;
                 all = r.Next(20, 50);
                 part2 = (double)r.Next(5, 9) / 10d;
-                part1 = r.Next((int)(all * (part2-0.05)), (int)(all*(part2 + 0.05)))*100d;
-                all *= 100;    
-                double x = (part1 - all * part2) / Math.Sqrt(all * part2 * (1d - part2));
+              
+                all *= 100;
+                double x = (double)r.Next(-200, 200) / 100d;
+                part1 = (int)(x * Math.Sqrt(all * part2 * (1d - part2)) + all * part2);   
                 double result = (double)excel.WorksheetFunction.Norm_S_Dist(x,false) / (double)Math.Sqrt(all * part2 * (1d - part2));
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("15.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
@@ -447,12 +448,15 @@ namespace ГенерацияТВ
                 double all, part1, part2, result;
                 all = r.Next(50, 100);
                 part1 = (double)r.Next(5, 9) / 10d;
-                part2 = (double)r.Next((int)(all * (part1-0.05)), (int)(all * part1)) * 100d;
+              
                 all *= 100d;
                 double x1, x2;
-                x1 = (part2 - all * part1) / Math.Sqrt(all * part1* (1d - part1));
+                x1 = (double)r.Next(-250, 250)/100d;
+                part2 = (int)(x1 * Math.Sqrt(all * part1 * (1d - part1)) + all * part1);           
                 x2 = (0d - all * part1) / Math.Sqrt(all * part1 * (1d - part1));
-                result = ((double)excel.WorksheetFunction.Norm_S_Dist(x1,true) - 0.5) - ((double)excel.WorksheetFunction.NormSDist(x2) - 0.5);
+                double F1 = (double)excel.WorksheetFunction.Norm_S_Dist(x1, true) - 0.5;
+                    double F2= (double)excel.WorksheetFunction.Norm_S_Dist(x2, true)-0.5;
+                result = F1 - F2;
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("17.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
                 paragraph.Append("Вероятность появления события в каждом из " + all.ToString() + " независимых испытании постоянна и равна " + part1.ToString() + ". Найти вероятность того, что событие появится не более чем "+part2.ToString()+" раз.").Font(font).FontSize(12);
