@@ -12,7 +12,7 @@ using Xceed.Document.NET;
 using Microsoft.Office.Interop.Excel;
 using IExcel = Microsoft.Office.Interop.Excel;
 using System.Diagnostics;
-
+using System.IO;
 
 namespace ГенерацияТВ
 {
@@ -49,7 +49,7 @@ namespace ГенерацияТВ
         }
         class Gen
         {
-            DocX document;
+            DocX document, documentOtvet;
             Paragraph paragraph;
             randBuff buff = new randBuff();
             Random r;
@@ -66,71 +66,151 @@ namespace ГенерацияТВ
                 allresult = new string[countVariants];
                 excel = new IExcel.Application();
                 font = "Times New Roman";
-                SaveFileDialog saveFile = new SaveFileDialog();
-                saveFile.DefaultExt = ".docx";
-                saveFile.AddExtension = true;
-                saveFile.Title = "Сохранить как...";
-                saveFile.OverwritePrompt = true;
-                saveFile.Filter = "Word files(*.docx)|*.docx|All files(*.*)|*.*";
 
-                if (saveFile.ShowDialog() == DialogResult.Cancel)
-                    return;
-
-                // получаем выбранный файл
-                string filename = saveFile.FileName;
-
-                // создаём документ
-                document = DocX.Create(filename);
-
-                form1.progressBar.Maximum = countVariants;
-
-                for (variantIterator = 0; variantIterator < countVariants; variantIterator++)
+                if (form1.splitCheckBox.Checked == true)
                 {
-                    form1.progressBar.Value = variantIterator;
+                    FolderBrowserDialog selectFolder = new FolderBrowserDialog();
+                    selectFolder.Description = "Выберите папку для сохранения вариантов";
 
-                    paragraph = document.InsertParagraph();
+                    if (selectFolder.ShowDialog() == DialogResult.Cancel)
+                        return;
 
-                    if (variantIterator < (form1.studentsDataGrid.Rows.Count) - 1) paragraph.Append(form1.studentsDataGrid["studentName", variantIterator].Value.ToString()).Font(font).FontSize(10).Alignment = Alignment.right;
+                    string filePath = selectFolder.SelectedPath + "\\";
 
-                    paragraph = document.InsertParagraph();
-                    paragraph.Append(System.Convert.ToString(variantIterator + 1) + "  ВАРИАНТ").Font(font).FontSize(14).Bold().Alignment = Alignment.center;
-                    paragraph.AppendLine();
+                    // создаём документ
+                    documentOtvet = DocX.Create(filePath + "Ответы.docx");
 
-                    gen1();
-                    gen2();
-                    gen3();
-                    gen4();
-                    gen5();
-                    gen6();
-                    gen7();
-                    gen8();
-                    gen9();
-                    gen10();
-                    gen11_12();
-                    gen13_14();
-                    gen15();
-                    gen16();
-                    gen17();
-                    gen18();
+                    form1.progressBar.Maximum = countVariants;
 
-                    if (variantIterator != countVariants) paragraph.InsertPageBreakAfterSelf();
-                    paragraph = document.InsertParagraph();
+                    for (variantIterator = 0; variantIterator < countVariants; variantIterator++)
+                    {
+                        if (variantIterator < (form1.studentsDataGrid.Rows.Count) - 1)
+                            document = DocX.Create(filePath + form1.studentsDataGrid["studentName", variantIterator].Value.ToString() + ".docx");
+                        else
+                            document = DocX.Create(filePath + (variantIterator + 1).ToString() + " вариант" + ".docx");
+
+                        form1.progressBar.Value = variantIterator;
+
+                        paragraph = document.InsertParagraph();
+
+                        if (variantIterator < (form1.studentsDataGrid.Rows.Count) - 1) paragraph.Append(form1.studentsDataGrid["studentName", variantIterator].Value.ToString()).Font(font).FontSize(10).Alignment = Alignment.right;
+
+                        paragraph = document.InsertParagraph();
+                        paragraph.Append(System.Convert.ToString(variantIterator + 1) + "  ВАРИАНТ").Font(font).FontSize(14).Bold().Alignment = Alignment.center;
+                        paragraph.AppendLine();
+
+                        gen1();
+                        gen2();
+                        gen3();
+                        gen4();
+                        gen5();
+                        gen6();
+                        gen7();
+                        gen8();
+                        gen9();
+                        gen10();
+                        gen11_12();
+                        gen13_14();
+                        gen15();
+                        gen16();
+                        gen17();
+                        gen18();
+
+                        document.Save();
+                    }
+
+                    // Вывод ответов
+                    paragraph = documentOtvet.InsertParagraph();
+
+                    paragraph.Append("Ответы").Font(font).FontSize(16).Bold().Alignment = Alignment.center;
+
+                    for (variantIterator = 0; variantIterator < countVariants; variantIterator++)
+                    {
+                        paragraph.Append("\nВариант " + (variantIterator + 1).ToString()).Font(font).FontSize(14).Bold().Alignment = Alignment.left;
+                        if (variantIterator < (form1.studentsDataGrid.Rows.Count) - 1) paragraph.AppendLine("Студент: " + form1.studentsDataGrid["studentName", variantIterator].Value.ToString()).Font(font).FontSize(12).Alignment = Alignment.left;
+                        paragraph.Append(allresult[variantIterator]).Font(font).FontSize(12).Alignment = Alignment.left;
+                        if (variantIterator != countVariants - 1) paragraph.InsertPageBreakAfterSelf();
+                        paragraph = documentOtvet.InsertParagraph();
+                    }
+
+                    documentOtvet.Save();
+                    MessageBox.Show("Файл сохранен");
                 }
 
-                // Вывод ответов
-                paragraph = document.InsertParagraph();
-
-                paragraph.Append("Ответы").Font(font).FontSize(16).Bold().Alignment = Alignment.center;
-
-                for (variantIterator = 0; variantIterator < countVariants; variantIterator++)
+                if (form1.splitCheckBox.Checked == false)
                 {
-                    paragraph.Append("\nВариант " + (variantIterator + 1).ToString()).Font(font).FontSize(14).Bold().Alignment = Alignment.left;
-                    paragraph.Append(allresult[variantIterator]).Font(font).FontSize(12).Alignment = Alignment.left;
+                    SaveFileDialog saveFile = new SaveFileDialog();
+                    saveFile.DefaultExt = ".docx";
+                    saveFile.AddExtension = true;
+                    saveFile.Title = "Сохранить как...";
+                    saveFile.OverwritePrompt = true;
+                    saveFile.Filter = "Word files(*.docx)|*.docx|All files(*.*)|*.*";
+
+                    if (saveFile.ShowDialog() == DialogResult.Cancel)
+                        return;
+
+                    // получаем выбранный файл
+                    string filename = saveFile.FileName;
+                    string otvetfilename = addWordInPath(filename, " Ответы");
+
+
+                    // создаём документ
+                    document = DocX.Create(filename);
+                    documentOtvet = DocX.Create(otvetfilename);
+
+                    form1.progressBar.Maximum = countVariants;
+
+                    for (variantIterator = 0; variantIterator < countVariants; variantIterator++)
+                    {
+                        form1.progressBar.Value = variantIterator;
+
+                        paragraph = document.InsertParagraph();
+
+                        if (variantIterator < (form1.studentsDataGrid.Rows.Count) - 1) paragraph.Append(form1.studentsDataGrid["studentName", variantIterator].Value.ToString()).Font(font).FontSize(10).Alignment = Alignment.right;
+
+                        paragraph = document.InsertParagraph();
+                        paragraph.Append(System.Convert.ToString(variantIterator + 1) + "  ВАРИАНТ").Font(font).FontSize(14).Bold().Alignment = Alignment.center;
+                        paragraph.AppendLine();
+
+                        gen1();
+                        gen2();
+                        gen3();
+                        gen4();
+                        gen5();
+                        gen6();
+                        gen7();
+                        gen8();
+                        gen9();
+                        gen10();
+                        gen11_12();
+                        gen13_14();
+                        gen15();
+                        gen16();
+                        gen17();
+                        gen18();
+
+                        if (variantIterator != countVariants - 1) paragraph.InsertPageBreakAfterSelf();
+                        paragraph = document.InsertParagraph();
+                    }
+
+                    // Вывод ответов
+                    paragraph = documentOtvet.InsertParagraph();
+
+                    paragraph.Append("Ответы").Font(font).FontSize(16).Bold().Alignment = Alignment.center;
+
+                    for (variantIterator = 0; variantIterator < countVariants; variantIterator++)
+                    {
+                        paragraph.Append("\nВариант " + (variantIterator + 1).ToString()).Font(font).FontSize(14).Bold().Alignment = Alignment.left;
+                        if (variantIterator < (form1.studentsDataGrid.Rows.Count) - 1) paragraph.AppendLine("Студент: " + form1.studentsDataGrid["studentName", variantIterator].Value.ToString()).Font(font).FontSize(12).Alignment = Alignment.left;
+                        paragraph.Append(allresult[variantIterator]).Font(font).FontSize(12).Alignment = Alignment.left;
+                        if (variantIterator != countVariants - 1) paragraph.InsertPageBreakAfterSelf();
+                        paragraph = documentOtvet.InsertParagraph();
+                    }
+
+                    document.Save();
+                    documentOtvet.Save();
+                    MessageBox.Show("Файл сохранен");
                 }
-
-
-                document.Save();
-                MessageBox.Show("Файл сохранен");
             }
 
             int randInt(int from, int to)
@@ -148,6 +228,21 @@ namespace ГенерацияТВ
                 else res = r.Next(from, to);
 
                 return res;
+            }
+
+            string addWordInPath(string inPath, string word)
+            {
+                string result = "";
+                int ptrend = inPath.Length - 5;
+
+                int ptr = 0;
+
+                for (int i = 0; i < ptrend; i++)
+                {
+                    result += inPath[i];
+                }
+
+                return result + word + ".docx";
             }
 
             string doubleNormalize(string strIn)
@@ -462,11 +557,11 @@ namespace ГенерацияТВ
                 all = r.Next(20, 50);
 
                 part2 = (double)r.Next(5, 9) / 10d;
- 
+
                 all *= 100;
                 double x = (double)r.Next(-200, 200) / 100d;
-                part1 = (int)(x * Math.Sqrt(all * part2 * (1d - part2)) + all * part2);   
-                double result = (double)excel.WorksheetFunction.Norm_S_Dist(x,false) / (double)Math.Sqrt(all * part2 * (1d - part2));
+                part1 = (int)(x * Math.Sqrt(all * part2 * (1d - part2)) + all * part2);
+                double result = (double)excel.WorksheetFunction.Norm_S_Dist(x, false) / (double)Math.Sqrt(all * part2 * (1d - part2));
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("15.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
                 paragraph.Append("Вероятность наступления события А в одном опыте равна " + part2.ToString() + ". Найти вероятность того, что событие А наступит " + part1.ToString() + " раз в " + all.ToString() + " опытах.").Font(font).FontSize(12);
@@ -500,11 +595,11 @@ namespace ГенерацияТВ
                 all *= 100d;
 
                 double x1, x2;
-                x1 = (double)r.Next(-250, 250)/100d;
-                part2 = (int)(x1 * Math.Sqrt(all * part1 * (1d - part1)) + all * part1);           
+                x1 = (double)r.Next(-250, 250) / 100d;
+                part2 = (int)(x1 * Math.Sqrt(all * part1 * (1d - part1)) + all * part1);
                 x2 = (0d - all * part1) / Math.Sqrt(all * part1 * (1d - part1));
                 double F1 = (double)excel.WorksheetFunction.Norm_S_Dist(x1, true) - 0.5;
-                    double F2= (double)excel.WorksheetFunction.Norm_S_Dist(x2, true)-0.5;
+                double F2 = (double)excel.WorksheetFunction.Norm_S_Dist(x2, true) - 0.5;
                 result = F1 - F2;
 
                 paragraph = document.InsertParagraph();
