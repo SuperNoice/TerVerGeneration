@@ -181,6 +181,7 @@
             this.Controls.Add(this.studentsDataGrid);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.headerLabel);
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Генерация типовых расчетов";
