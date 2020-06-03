@@ -36,6 +36,7 @@
             this.studentsDataGrid = new System.Windows.Forms.DataGridView();
             this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.addStudentsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.studentsDataGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -72,7 +73,7 @@
             this.headerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.headerLabel.AutoSize = true;
             this.headerLabel.Font = new System.Drawing.Font("Sitka Small", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headerLabel.Location = new System.Drawing.Point(48, 15);
+            this.headerLabel.Location = new System.Drawing.Point(35, 15);
             this.headerLabel.Name = "headerLabel";
             this.headerLabel.Size = new System.Drawing.Size(511, 24);
             this.headerLabel.TabIndex = 3;
@@ -82,7 +83,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(442, 345);
+            this.label3.Location = new System.Drawing.Point(416, 346);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(168, 13);
             this.label3.TabIndex = 4;
@@ -103,7 +104,7 @@
             this.studentsDataGrid.Name = "studentsDataGrid";
             this.studentsDataGrid.RowHeadersVisible = false;
             this.studentsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.studentsDataGrid.Size = new System.Drawing.Size(313, 256);
+            this.studentsDataGrid.Size = new System.Drawing.Size(287, 257);
             this.studentsDataGrid.TabIndex = 6;
             this.studentsDataGrid.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.studentsDataGrid_RowsAdded);
             this.studentsDataGrid.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.studentsDataGrid_RowsRemoved);
@@ -111,20 +112,28 @@
             // studentName
             // 
             this.studentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.studentName.HeaderText = "Name";
+            this.studentName.HeaderText = "ФИО";
             this.studentName.Name = "studentName";
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.progressBar);
             this.groupBox1.Controls.Add(this.genButton);
             this.groupBox1.Controls.Add(this.variantTextBox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(377, 126);
+            this.groupBox1.Location = new System.Drawing.Point(351, 126);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 158);
+            this.groupBox1.Size = new System.Drawing.Size(200, 183);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(6, 151);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(188, 17);
+            this.progressBar.TabIndex = 8;
             // 
             // addStudentsButton
             // 
@@ -141,14 +150,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(612, 361);
+            this.ClientSize = new System.Drawing.Size(584, 361);
             this.Controls.Add(this.addStudentsButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.studentsDataGrid);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.headerLabel);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Генерация типовых расчетов";
             ((System.ComponentModel.ISupportInitialize)(this.studentsDataGrid)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -164,10 +174,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label headerLabel;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button addStudentsButton;
         public System.Windows.Forms.DataGridView studentsDataGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }
 

@@ -82,8 +82,12 @@ namespace ГенерацияТВ
                 // создаём документ
                 document = DocX.Create(filename);
 
+                form1.progressBar.Maximum = countVariants;
+
                 for (variantIterator = 0; variantIterator < countVariants; variantIterator++)
                 {
+                    form1.progressBar.Value = variantIterator;
+
                     paragraph = document.InsertParagraph();
 
                     if (variantIterator < (form1.studentsDataGrid.Rows.Count) - 1) paragraph.Append(form1.studentsDataGrid["studentName", variantIterator].Value.ToString()).Font(font).FontSize(10).Alignment = Alignment.right;
@@ -102,10 +106,8 @@ namespace ГенерацияТВ
                     gen8();
                     gen9();
                     gen10();
-                    gen11();
-                    gen12();
-                    gen13();
-                    gen14();
+                    gen11_12();
+                    gen13_14();
                     gen15();
                     gen16();
                     gen17();
@@ -345,7 +347,7 @@ namespace ГенерацияТВ
                 allresult[variantIterator] += "\n10. " + doubleNormalize(result.ToString()) + ";";
             }
 
-            private void gen11()
+            private void gen11_12()
             {
                 double part1, part2, part3, part4, part5;
                 part1 = r.Next(1, 8);
@@ -407,14 +409,7 @@ namespace ГенерацияТВ
                 allresult[variantIterator] += "\n12. М(ξ)=" + doubleNormalize(ME.ToString()) + "\n      D(ξ)=" + doubleNormalize(DE.ToString()) + "\n      σ(ξ)= " + doubleNormalize(q.ToString()) + "; ";
             }
 
-            private void gen12()
-            {
-
-
-
-            }
-
-            private void gen13()
+            private void gen13_14()
             {
                 string[] f1 = new string[] { "-π/2", "-π/3", "-π/4", "-π/6", "0" };
                 string[] f2 = new string[] { "π/2", "π/3", "π/4", "π/6" };
@@ -459,14 +454,6 @@ namespace ГенерацияТВ
                     "\n14. М(ξ)= " + doubleNormalize(ME.ToString()) +
                     "\n      D(ξ)= " + doubleNormalize(DE.ToString()) +
                     "\n      σ(ξ)= " + doubleNormalize(q.ToString()) + ";";
-            }
-
-
-
-            private void gen14()
-            {
-
-
             }
 
             private void gen15()
@@ -581,8 +568,6 @@ namespace ГенерацияТВ
 
             }
 
-
-
         }
 
         private void genButton_Click(object sender, EventArgs e)
@@ -593,8 +578,13 @@ namespace ГенерацияТВ
 
             if (countVariants < 1) { MessageBox.Show("Неверное кол-во вариантов!"); return; }
 
+            UseWaitCursor = true;
+
             Gen gen = new Gen(countVariants, this);
 
+            progressBar.Value = 0;
+
+            UseWaitCursor = false;
         }
 
         private void addStudentsButton_Click(object sender, EventArgs e)

@@ -87,6 +87,7 @@
             this.Controls.Add(this.SaveStudentsButton);
             this.Controls.Add(this.groupBox1);
             this.Name = "addStudentsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление студентов";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
