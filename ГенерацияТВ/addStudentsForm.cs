@@ -26,7 +26,8 @@ namespace ГенерацияТВ
         {
             if (fioCheckBox.Checked == true)
             {
-                char[] warnSymbol = { '/', '.', ',', '\\', '\'', ']', '[', '{', ';', '}', ':', '"', '+', '=', '_', '-', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '№', '?', '`', '~', '<', '>' };
+                char[] warnSymbol = { '/', ',', '\\', '\'', ']', '[', '{', ';', '}', ':', '"', '+', '=', '_', '-', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '№', '?', '`', '~', '<', '>' };
+                if (fioFormatComboBox.Text == "Иванов Иван Иванович") warnSymbol = warnSymbol.Append('.').ToArray();
 
                 studentsRichTextBox.Text = studentsRichTextBox.Text.Trim();
 
@@ -48,9 +49,14 @@ namespace ГенерацияТВ
                     if (fio.Length != 3) { MessageBox.Show("Неверный формат ФИО! (Возможно встречены лишние пробелы)"); return; }
 
                     for (int j = 0; j < fio.Length; j++)
+                    {
+                        if (fioFormatComboBox.Text == "Иванов Иван Иванович" && j > 0 && fio[j].Contains('.')) { MessageBox.Show("Неверный формат ФИО!"); return; }
+
                         for (int k = 0; k < fio[j].Length; k++)
                             if (warnSymbol.Contains(fio[j][k])) { MessageBox.Show("Недопустимые символы в ФИО!"); return; }
 
+                        if (fioFormatComboBox.Text == "Иванов И. И." && j > 0 && !fio[j].Contains('.')) { MessageBox.Show("Неверный формат ФИО!"); return; }
+                    }
                 }
 
                 for (int i = 0; i < students.Length; ++i)
@@ -79,6 +85,12 @@ namespace ГенерацияТВ
                 this.Hide();
             }
 
+        }
+
+        private void fioCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (fioCheckBox.Checked == false) fioFormatGroupBox.Visible = false;
+            else fioFormatGroupBox.Visible = true;
         }
     }
 }
