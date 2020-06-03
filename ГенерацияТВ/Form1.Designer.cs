@@ -105,6 +105,8 @@
             this.studentsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.studentsDataGrid.Size = new System.Drawing.Size(313, 256);
             this.studentsDataGrid.TabIndex = 6;
+            this.studentsDataGrid.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.studentsDataGrid_RowsAdded);
+            this.studentsDataGrid.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.studentsDataGrid_RowsRemoved);
             // 
             // studentName
             // 
