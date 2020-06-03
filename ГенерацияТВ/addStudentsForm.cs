@@ -24,21 +24,61 @@ namespace ГенерацияТВ
 
         private void SaveStudentsButton_Click(object sender, EventArgs e)
         {
-            studentsRichTextBox.Text = studentsRichTextBox.Text.Trim();
+            if (fioCheckBox.Checked == true)
+            {
+                char[] warnSymbol = { '/', '.', ',', '\\', '\'', ']', '[', '{', ';', '}', ':', '"', '+', '=', '_', '-', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '№', '?', '`', '~', '<', '>' };
 
-            string[] students = studentsRichTextBox.Lines;
+                studentsRichTextBox.Text = studentsRichTextBox.Text.Trim();
 
-            if (students.Length == 0) { MessageBox.Show("Введите студентов!"); return; }
+                string[] students = studentsRichTextBox.Lines;
 
-            for (int i = 0; i < students.Length; ++i)
-                students[i] = students[i].Trim();
+                if (students.Length == 0) { MessageBox.Show("Введите студентов!"); return; }
 
-            for (int i = 0; i < students.Length; ++i)
-                studentsDataGrid.Rows.Add(students[i]);
+                for (int i = 0; i < students.Length; ++i)
+                    students[i] = students[i].Trim();
 
-            form1.updateCountVariants();
+                string[] fio;
+                for (int i = 0; i < students.Length; ++i)
+                {
+                    fio = students[i].Split(' ');
 
-            this.Hide();
+                    for (int j = 0; j < fio.Length; j++)
+                        fio[j] = fio[j].Trim();
+
+                    if (fio.Length != 3) { MessageBox.Show("Неверный формат ФИО! (Возможно встречены лишние пробелы)"); return; }
+
+                    for (int j = 0; j < fio.Length; j++)
+                        for (int k = 0; k < fio[j].Length; k++)
+                            if (warnSymbol.Contains(fio[j][k])) { MessageBox.Show("Недопустимые символы в ФИО!"); return; }
+
+                }
+
+                for (int i = 0; i < students.Length; ++i)
+                    studentsDataGrid.Rows.Add(students[i]);
+
+                form1.updateCountVariants();
+
+                this.Hide();
+            }
+            else
+            {
+                studentsRichTextBox.Text = studentsRichTextBox.Text.Trim();
+
+                string[] students = studentsRichTextBox.Lines;
+
+                if (students.Length == 0) { MessageBox.Show("Введите студентов!"); return; }
+
+                for (int i = 0; i < students.Length; ++i)
+                    students[i] = students[i].Trim();
+
+                for (int i = 0; i < students.Length; ++i)
+                    studentsDataGrid.Rows.Add(students[i]);
+
+                form1.updateCountVariants();
+
+                this.Hide();
+            }
+
         }
     }
 }

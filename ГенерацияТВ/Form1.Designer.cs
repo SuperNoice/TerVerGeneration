@@ -39,6 +39,7 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.addStudentsButton = new System.Windows.Forms.Button();
             this.splitCheckBox = new System.Windows.Forms.CheckBox();
+            this.clearButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.studentsDataGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -157,12 +158,24 @@
             this.splitCheckBox.Text = "Варианты в отдельные файлы";
             this.splitCheckBox.UseVisualStyleBackColor = true;
             // 
+            // clearButton
+            // 
+            this.clearButton.Location = new System.Drawing.Point(188, 50);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(123, 27);
+            this.clearButton.TabIndex = 8;
+            this.clearButton.TabStop = false;
+            this.clearButton.Text = "Очистить список";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.clearButton);
             this.Controls.Add(this.addStudentsButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.studentsDataGrid);
@@ -192,6 +205,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.CheckBox splitCheckBox;
+        private System.Windows.Forms.Button clearButton;
     }
 }
 

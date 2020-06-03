@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SaveStudentsButton = new System.Windows.Forms.Button();
+            this.fioCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,6 +41,7 @@
             this.studentsRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.studentsRichTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.studentsRichTextBox.Location = new System.Drawing.Point(6, 50);
             this.studentsRichTextBox.Name = "studentsRichTextBox";
             this.studentsRichTextBox.Size = new System.Drawing.Size(334, 363);
@@ -71,6 +73,7 @@
             // 
             // SaveStudentsButton
             // 
+            this.SaveStudentsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SaveStudentsButton.Location = new System.Drawing.Point(412, 391);
             this.SaveStudentsButton.Name = "SaveStudentsButton";
             this.SaveStudentsButton.Size = new System.Drawing.Size(78, 34);
@@ -79,11 +82,23 @@
             this.SaveStudentsButton.UseVisualStyleBackColor = true;
             this.SaveStudentsButton.Click += new System.EventHandler(this.SaveStudentsButton_Click);
             // 
+            // fioCheckBox
+            // 
+            this.fioCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.fioCheckBox.AutoSize = true;
+            this.fioCheckBox.Location = new System.Drawing.Point(393, 62);
+            this.fioCheckBox.Name = "fioCheckBox";
+            this.fioCheckBox.Size = new System.Drawing.Size(111, 17);
+            this.fioCheckBox.TabIndex = 3;
+            this.fioCheckBox.Text = "Проверять ФИО";
+            this.fioCheckBox.UseVisualStyleBackColor = true;
+            // 
             // addStudentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(536, 443);
+            this.Controls.Add(this.fioCheckBox);
             this.Controls.Add(this.SaveStudentsButton);
             this.Controls.Add(this.groupBox1);
             this.Name = "addStudentsForm";
@@ -92,6 +107,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -101,5 +117,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button SaveStudentsButton;
+        private System.Windows.Forms.CheckBox fioCheckBox;
     }
 }
