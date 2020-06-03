@@ -71,7 +71,7 @@ namespace ГенерацияТВ
                 saveFile.AddExtension = true;
                 saveFile.Title = "Сохранить как...";
                 saveFile.OverwritePrompt = true;
-                saveFile.Filter = "Text files(*.docx)|*.docx|All files(*.*)|*.*";
+                saveFile.Filter = "Word files(*.docx)|*.docx|All files(*.*)|*.*";
 
                 if (saveFile.ShowDialog() == DialogResult.Cancel)
                     return;
@@ -573,6 +573,15 @@ namespace ГенерацияТВ
         private void genButton_Click(object sender, EventArgs e)
         {
             if (variantTextBox.Text == "") { MessageBox.Show("Невнрное кол-во вариантов!"); return; }
+
+            try
+            {
+                int countVariantstest = System.Convert.ToInt32(variantTextBox.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Неверное кол-во вариантов!"); return;
+            }
 
             int countVariants = System.Convert.ToInt32(variantTextBox.Text);
 
