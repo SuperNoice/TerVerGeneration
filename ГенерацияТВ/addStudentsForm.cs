@@ -29,8 +29,7 @@ namespace ГенерацияТВ
             
             for (int i = 0; i < students.Length; ++i)
             {
-                form.studentsDataGrid.Rows.Add();
-                form.studentsDataGrid[0, form.studentsDataGrid.Rows.Count - 1].Value = students[i];
+                
             }
 
             

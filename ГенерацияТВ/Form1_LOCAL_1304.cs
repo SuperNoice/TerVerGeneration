@@ -114,7 +114,7 @@ namespace ГенерацияТВ
 
                 for (variantIterator = 0; variantIterator < countVariants; variantIterator++)
                 {
-                    paragraph.Append("\nВариант "+(variantIterator+1).ToString()).Font(font).FontSize(14).Bold().Alignment = Alignment.left;
+                    paragraph.Append("Вариант " + (variantIterator + 1).ToString()).Font(font).FontSize(16).Bold().Alignment = Alignment.left;
                     paragraph.Append(allresult[variantIterator]).Font(font).FontSize(12).Alignment = Alignment.left;
                 }
                 document.Save();
@@ -340,8 +340,8 @@ namespace ГенерацияТВ
 
 
 
-                string resultf = "φ(х)=0, при x≤-1 φ(х)=" + part1.ToString() + ", при -1<x≤0 φ(х)=" + (part1 + part2).ToString() + ", при 0<x≤1 φ(х)=" + (part1 + part2 + part3).ToString() + ", при 1<x≤2" +
-                    " φ(х)=" + (part1 + part2 + part3 + part4).ToString() + ", при 2<x≤3 φ(х)=" + (part1 + part2 + part3 + part4 + part5).ToString() + ", при x>3";
+                string resultf = "φ(х) = 0,при x≤-1 φ(х) = " + part1.ToString() + ",при -1<x≤0 φ(х) = " + (part1 + part2).ToString() + ",при 0<x≤1 φ(х) = " + (part1 + part2 + part3).ToString() + ",при 1<x≤2" +
+                    " φ(х) = " + (part1 + part2 + part3 + part4).ToString() + ",при 2<x≤3 φ(х) = " + (part1 + part2 + part3 + part4 + part5).ToString() + ",при x>3";
 
                 allresult[variantIterator] += "\n11. " + resultf + "; ";
 
@@ -353,8 +353,7 @@ namespace ГенерацияТВ
                 ME = -1 * part1 + 0 * part2 + 1 * part3 + 2 * part4 + 3 * part5;
                 DE = 1 * part1 + 0 * part2 + 1 * part3 + 4 * part4 + 9 * part5 - ME * ME;
                 q = Math.Sqrt(DE);
-
-                allresult[variantIterator] += "\n12. М(ξ)=" + ME.ToString() + ", D(ξ)="+DE.ToString()+ ", σ(ξ)= "+q.ToString()+"; ";
+                allresult[variantIterator] += "\n12. М(ξ)=" + ME.ToString() + ", D(ξ)=" + DE.ToString() + "; ";
             }
 
             private void gen12()
@@ -373,32 +372,29 @@ namespace ГенерацияТВ
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("13.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
                 paragraph.Append("Задана плотность распределения непрерывной случайной величины ξ:"
-                + "\n φ(х)=K*cos(x), ∀x ∈ ("+f1[part1]+" ; " + f2[part2]+ "]\n φ(х)=0, ∀x ∉ (" + f1[part1] + " ; " + f2[part2] + "]\nНайти K и функцию распределения F(x).").Font(font).FontSize(12);
-
+                + "\n φ(х) = K*cos(x), ∀x ∈ (" + f1[part1] + " ; " + f2[part2] + "]\n φ(х) = 0, ∀x ∉ (" + f1[part1] + " ; " + f2[part2] + "]\nНайти K и функцию распределения F(x).").Font(font).FontSize(12);
                 string[,] kresultm = new string[,] { { "1/2", "-2√3 + 4", "√2 +2","2/3"},
-                                                     {"4-2√3","√3/3","-2√2 + 2√3","-1+√3"},
-                                                     {"2-√2","2√3-2√2","√2/2","-2+2√2" },
-                                                     {"2/3","√3 -1","2√2-2","1" },
-                                                     {"1","2√3/3","√2","2" } };
+                                                    {"4-2√3","√3/3","-2√2 + 2√3","-1+√3"},
+                                                    {"2-√2","2√3-2√2","√2/2","-2+2√2" },
+                                                    {"2/3","√3 -1","2√2-2","1" },
+                                                    {"1","2√3/3","√2","2" } };
                 string kresult = kresultm[part1, part2];
+                string fresult = "φ(х) = 0,при x≤" + f1[part1] +
+                                 ", φ(х) =" + kresult + "sin(x),при " + f1[part1] + " < x ≤ " + f2[part2] + ", φ(х) =1,при x > " + f2[part2];
+                allresult[variantIterator] += "\n13. K= " + kresult.ToString() + ", " + fresult + "; ";
 
-                string fresult = "φ(х)=0,при x≤" + f1[part1] +
-                                 ", φ(х)=" + kresult + "sin(x),при " + f1[part1] + " < x ≤ " + f2[part2] + ", φ(х)=1,при x > " + f2[part2];
-                allresult[variantIterator] += "\n13. K= " + kresult.ToString()+", "+ fresult+"; ";
 
                 double ME, DE, q;
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("14.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
                 paragraph.Append("ξ - непрерывная случайная величина примера 13. Найти М(ξ), D(ξ), σ(ξ).").Font(font).FontSize(12);
-
-                double[] f1num=new double[] { -Math.PI/2d,-Math.PI/3d,-Math.PI/4d,-Math.PI/6d,0d };
-                double[] f2num = new double[] { Math.PI / 2d, Math.PI / 3d, Math.PI / 4d, Math.PI / 6d};
-                double[,] knum = new double[,] { { 1d/2d, -2d*(double)Math.Sqrt(3d) + 4d, (double)Math.Sqrt(2d) +2d,2d/3d},
-                                                 {4d-2d*(double)Math.Sqrt(3d),(double)Math.Sqrt(3d)/3d,-2d*(double)Math.Sqrt(2d) + 2d*(double)Math.Sqrt(3d),-1d*(double)Math.Sqrt(3d)},
-                                                 {2d-(double)Math.Sqrt(2d),2d*(double)Math.Sqrt(3d)-2d*(double)Math.Sqrt(2d),(double)Math.Sqrt(2d)/2d,-2d+2d*(double)Math.Sqrt(2d) },
-                                                 {2d/3d,(double)Math.Sqrt(3d) -1d,2d*(double)Math.Sqrt(2d)-2d,1d },
-                                                 {1d,2d*(double)Math.Sqrt(3d)/3d,(double)Math.Sqrt(2d),2d } };
-
+                double[] f1num = new double[] { -Math.PI / 2, -Math.PI / 3, -Math.PI / 4, -Math.PI / 6, 0 };
+                double[] f2num = new double[] { Math.PI / 2, Math.PI / 3, Math.PI / 4, Math.PI / 6 };
+                double[,] knum = new double[,] { { 1/2, -2*Math.Sqrt(3) + 4, Math.Sqrt(2) +2,2/3},
+                                                 {4-2*Math.Sqrt(3),Math.Sqrt(3)/3,-2*Math.Sqrt(2) + 2*Math.Sqrt(3),-1*Math.Sqrt(3)},
+                                                 {2-Math.Sqrt(2),2*Math.Sqrt(3)-2*Math.Sqrt(2),Math.Sqrt(2)/2,-2+2*Math.Sqrt(2) },
+                                                 {2/3,Math.Sqrt(3) -1,2*Math.Sqrt(2)-2,1 },
+                                                    {1,2*Math.Sqrt(3)/3,Math.Sqrt(2),2 } };
                 ME = knum[part1, part2] * (f2num[part2] * Math.Sin(f2num[part2]) + Math.Cos(f2num[part2]) - (f1num[part1] * Math.Sin(f1num[part1]) + Math.Cos(f1num[part1])));
                 DE = knum[part1, part2] * (f2num[part2] * f2num[part2] * Math.Sin(f2num[part2]) + 2d * f2num[part2] * Math.Cos(f2num[part2]) + 2d * Math.Sin(f2num[part2]) - (f1num[part1] * f2num[part1] * Math.Sin(f1num[part1]) + 2d * f1num[part1] * Math.Cos(f1num[part1]) + 2d * Math.Sin(f1num[part1]))) - ME * ME;
                 q = Math.Sqrt(DE);
@@ -418,13 +414,11 @@ namespace ГенерацияТВ
             {
                 double all, part1, part2;
                 all = r.Next(20, 50);
-
-                part2 = (double)r.Next(5, 9) / 10d;
-                part1 = r.Next((int)(all * (part2-0.05)), (int)(all*(part2 + 0.05)))*100d;
-                all *= 100;    
-                double x = (part1 - all * part2) / Math.Sqrt(all * part2 * (1d - part2));
-                double result = (double)excel.WorksheetFunction.Norm_S_Dist(x,false) / (double)Math.Sqrt(all * part2 * (1d - part2));
-
+                part1 = r.Next(10, (int)(all - 2)) * 100d;
+                all *= 100;
+                part2 = (double)r.Next(1, 9) / 10d;
+                double x = (part1 - all * part2) / Math.Sqrt(all * part2 * (1 - part2));
+                double result = (double)excel.WorksheetFunction.Norm_S_Dist(x, false) / (double)Math.Sqrt(all * part2 * (1d - part2));
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("15.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
                 paragraph.Append("Вероятность наступления события А в одном опыте равна " + part2.ToString() + ". Найти вероятность того, что событие А наступит " + part1.ToString() + " раз в " + all.ToString() + " опытах.").Font(font).FontSize(12);
@@ -439,7 +433,7 @@ namespace ГенерацияТВ
                 a = (double)randInt(5, 20);
                 q = (double)randInt(1, (int)a) / 10d;
                 a /= 10d;
-                double result = (excel.WorksheetFunction.NormSDist((1d - a) / q) - 0.5) - (excel.WorksheetFunction.NormSDist((0.3 - a) / q) - 0.5);
+                double result = (excel.WorksheetFunction.NormSDist((1 - a) / q) - 0.5) - (excel.WorksheetFunction.NormSDist((0.3 - a) / q) - 0.5);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("16.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
 
@@ -454,10 +448,8 @@ namespace ГенерацияТВ
                 double all, part1, part2, result;
                 all = r.Next(50, 100);
                 part1 = (double)r.Next(5, 9) / 10d;
-
-                part2 = (double)r.Next((int)(all * (part1-0.05)), (int)(all * part1)) * 100d;
-                all *= 100d;
-
+                part2 = (double)r.Next((int)(all * (part1 - 0.05)), (int)(all * part1)) * 100d;
+                all *= 100;
                 double x1, x2;
                 x1 = (part2 - all * part1) / Math.Sqrt(all * part1 * (1d - part1));
                 x2 = (0d - all * part1) / Math.Sqrt(all * part1 * (1d - part1));
@@ -507,11 +499,9 @@ namespace ГенерацияТВ
                 DE = part4 + part5 + part6 - ME * ME;
                 Mn = (part1 + part4) * (-1) + part3 + part6;
                 Dn = (part1 + part4) - Mn * Mn;
-
-                MEn = 1d * (-1d) * part4 + 1d * 1d * part6;
-                DEn = 1d * 1d * part4 + 1d * 1d + part6 - MEn * MEn;
-                allresult[variantIterator] += "\n18.  М(ξ)= " + ME.ToString() + ", D(ξ)= " + DE.ToString() + ", М(η)= " + Mn.ToString() + ", D(η)= " + Dn.ToString() + ", М(ξη)= " + MEn.ToString() + ", D(ξη)= "+DEn.ToString()+". ";
-
+                MEn = 1 * (-1) * part4 + 1 * 1 + part6;
+                DEn = 1 * 1 * part4 + 1 * 1 + part6 - MEn * MEn;
+                allresult[variantIterator] += "\n18.  М(ξ)= " + ME.ToString() + ", D(ξ)= " + DE.ToString() + ", М(η)= " + Mn.ToString() + ", D(η)= " + Dn.ToString() + ", М(ξη)= " + MEn.ToString() + ", D(ξη)= " + DEn.ToString() + ". ";
             }
 
 
