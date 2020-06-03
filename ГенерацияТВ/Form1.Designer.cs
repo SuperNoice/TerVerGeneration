@@ -33,13 +33,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.headerLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.studentsDataGrid = new System.Windows.Forms.DataGridView();
+            this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.addStudentsButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsDataGrid)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // genButton
             // 
-            this.genButton.Location = new System.Drawing.Point(122, 144);
+            this.genButton.Location = new System.Drawing.Point(46, 81);
             this.genButton.Name = "genButton";
-            this.genButton.Size = new System.Drawing.Size(87, 41);
+            this.genButton.Size = new System.Drawing.Size(110, 52);
             this.genButton.TabIndex = 0;
             this.genButton.Text = "Генерировать";
             this.genButton.UseVisualStyleBackColor = true;
@@ -47,7 +53,7 @@
             // 
             // variantTextBox
             // 
-            this.variantTextBox.Location = new System.Drawing.Point(210, 98);
+            this.variantTextBox.Location = new System.Drawing.Point(139, 35);
             this.variantTextBox.Name = "variantTextBox";
             this.variantTextBox.Size = new System.Drawing.Size(43, 20);
             this.variantTextBox.TabIndex = 1;
@@ -55,7 +61,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(82, 101);
+            this.label1.Location = new System.Drawing.Point(11, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 13);
             this.label1.TabIndex = 2;
@@ -63,34 +69,89 @@
             // 
             // headerLabel
             // 
+            this.headerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.headerLabel.AutoSize = true;
-            this.headerLabel.Location = new System.Drawing.Point(19, 20);
+            this.headerLabel.Font = new System.Drawing.Font("Sitka Small", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headerLabel.Location = new System.Drawing.Point(48, 15);
             this.headerLabel.Name = "headerLabel";
-            this.headerLabel.Size = new System.Drawing.Size(305, 13);
+            this.headerLabel.Size = new System.Drawing.Size(511, 24);
             this.headerLabel.TabIndex = 3;
             this.headerLabel.Text = "Генерация вариантов по теории вероятности(1-18 номера)";
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(248, 252);
+            this.label3.Location = new System.Drawing.Point(442, 345);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.Size = new System.Drawing.Size(168, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Лозовик Леонид";
+            this.label3.Text = "Андрей Галан, Лозовик Леонид";
+            // 
+            // studentsDataGrid
+            // 
+            this.studentsDataGrid.AllowUserToResizeColumns = false;
+            this.studentsDataGrid.AllowUserToResizeRows = false;
+            this.studentsDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.studentsDataGrid.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.studentsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.studentsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.studentName});
+            this.studentsDataGrid.Location = new System.Drawing.Point(24, 83);
+            this.studentsDataGrid.Name = "studentsDataGrid";
+            this.studentsDataGrid.RowHeadersVisible = false;
+            this.studentsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.studentsDataGrid.Size = new System.Drawing.Size(313, 256);
+            this.studentsDataGrid.TabIndex = 6;
+            this.studentsDataGrid.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.studentsDataGrid_RowsAdded);
+            this.studentsDataGrid.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.studentsDataGrid_RowsRemoved);
+            // 
+            // studentName
+            // 
+            this.studentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.studentName.HeaderText = "Name";
+            this.studentName.Name = "studentName";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.genButton);
+            this.groupBox1.Controls.Add(this.variantTextBox);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(377, 126);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 158);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            // 
+            // addStudentsButton
+            // 
+            this.addStudentsButton.Location = new System.Drawing.Point(24, 50);
+            this.addStudentsButton.Name = "addStudentsButton";
+            this.addStudentsButton.Size = new System.Drawing.Size(123, 27);
+            this.addStudentsButton.TabIndex = 3;
+            this.addStudentsButton.Text = "Добавить студентов";
+            this.addStudentsButton.UseVisualStyleBackColor = true;
+            this.addStudentsButton.Click += new System.EventHandler(this.addStudentsButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 269);
+            this.BackColor = System.Drawing.SystemColors.Menu;
+            this.ClientSize = new System.Drawing.Size(612, 361);
+            this.Controls.Add(this.addStudentsButton);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.studentsDataGrid);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.headerLabel);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.variantTextBox);
-            this.Controls.Add(this.genButton);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.studentsDataGrid)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,6 +164,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label headerLabel;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button addStudentsButton;
+        public System.Windows.Forms.DataGridView studentsDataGrid;
     }
 }
 
