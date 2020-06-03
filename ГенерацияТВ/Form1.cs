@@ -82,7 +82,7 @@ namespace ГенерацияТВ
                 for (variantIterator = 0; variantIterator < countVariants; variantIterator++)
                 {
                     paragraph = document.InsertParagraph();
-                    paragraph.Append(System.Convert.ToString(variantIterator+1) + "  ВАРИАНТ").Font(font).FontSize(16).Bold().Alignment = Alignment.center;
+                    paragraph.Append(System.Convert.ToString(variantIterator + 1) + "  ВАРИАНТ").Font(font).FontSize(16).Bold().Alignment = Alignment.center;
                     paragraph.AppendLine();
 
                     gen1();
@@ -111,10 +111,10 @@ namespace ГенерацияТВ
                 paragraph = document.InsertParagraph();
 
                 paragraph.Append("Ответы").Font(font).FontSize(16).Bold().Alignment = Alignment.center;
-               
-                for(variantIterator=0; variantIterator < countVariants; variantIterator++)
+
+                for (variantIterator = 0; variantIterator < countVariants; variantIterator++)
                 {
-                    paragraph.Append("Вариант "+(variantIterator+1).ToString()).Font(font).FontSize(16).Bold().Alignment = Alignment.left;
+                    paragraph.Append("Вариант " + (variantIterator + 1).ToString()).Font(font).FontSize(16).Bold().Alignment = Alignment.left;
                     paragraph.Append(allresult[variantIterator]).Font(font).FontSize(12).Alignment = Alignment.left;
                 }
                 document.Save();
@@ -137,7 +137,7 @@ namespace ГенерацияТВ
 
                 return res;
             }
-     
+
             private void gen1()
             {
                 int all, part1, part2;
@@ -154,34 +154,35 @@ namespace ГенерацияТВ
                 resulta = (double)excel.WorksheetFunction.Combin(part1, 2) / (double)excel.WorksheetFunction.Combin(all, 2);
                 resultb = (double)excel.WorksheetFunction.Combin(part2, 2) / (double)excel.WorksheetFunction.Combin(all, 2);
                 resultd = 1 - (double)excel.WorksheetFunction.Combin(part2, 2) / (double)excel.WorksheetFunction.Combin(all, 2);
-                allresult[variantIterator] += "\n1. a) " + resulta.ToString() + ", б) " + resultb.ToString() + ", в) " + resultd.ToString()+"; ";
+                allresult[variantIterator] += "\n1. a) " + resulta.ToString() + ", б) " + resultb.ToString() + ", в) " + resultd.ToString() + "; ";
             }
 
             private void gen2()
             {
                 int all, part1, part2, part3, quest;
-                int[] mas = new int[4] { 10, 20, 25, 50};
-               
+                int[] mas = new int[4] { 10, 20, 25, 50 };
+
                 all = mas[r.Next(0, 3)];
-                part1 = r.Next(3, all - 3);                            
+                part1 = r.Next(3, all - 3);
                 part2 = all - part1;
-                part3 = r.Next(4, all/2);
-                quest = r.Next(part2 < part3 ? part3 - part2:2, part1 > part3 ? part3 - 2 : part1 - 1);
+                part3 = r.Next(4, all / 2);
+                quest = r.Next(part2 < part3 ? part3 - part2 : 2, part1 > part3 ? part3 - 2 : part1 - 1);
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("2.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("В урне " + part1.ToString() +" белых и "+ part2.ToString() +" черных шаров. Наудачу отобраны "+ part3.ToString() +" шаров. Найти вероятность того, что среди них окажется ровно "+ quest.ToString() +" белых шаров.").Font(font).FontSize(12);
+                paragraph.Append("В урне " + part1.ToString() + " белых и " + part2.ToString() + " черных шаров. Наудачу отобраны " + part3.ToString() + " шаров. Найти вероятность того, что среди них окажется ровно " + quest.ToString() + " белых шаров.").Font(font).FontSize(12);
                 double result = (double)excel.WorksheetFunction.Combin(part1, quest) * (double)excel.WorksheetFunction.Combin(part2, part3 - quest) / (double)excel.WorksheetFunction.Combin(all, part3);
                 if (result > 1) MessageBox.Show("Говно");
-                allresult[variantIterator]+= "\n2. " + result.ToString()+"; ";
+                allresult[variantIterator] += "\n2. " + result.ToString() + "; ";
             }
 
             private void gen3()
-            { double part;
+            {
+                double part;
                 part = r.Next(3, 10);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("3.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("В колоде 32 карты. Наугад вынимают "+part+" карт. Найти вероятность того, что среди них окажутся хотя бы одна дама.").Font(font).FontSize(12);
+                paragraph.Append("В колоде 32 карты. Наугад вынимают " + part + " карт. Найти вероятность того, что среди них окажутся хотя бы одна дама.").Font(font).FontSize(12);
                 double result = 1d - (double)excel.WorksheetFunction.Combin(28, part) / (double)excel.WorksheetFunction.Combin(32, part);
                 allresult[variantIterator] += "\n3. " + result.ToString() + "; ";
             }
@@ -189,9 +190,9 @@ namespace ГенерацияТВ
             private void gen4()
             {
                 int all, part1, part2, quest;
-                int[] mas = new int[4] { 10, 20, 25, 50 };              
+                int[] mas = new int[4] { 10, 20, 25, 50 };
                 all = mas[r.Next(0, 3)];
-                part2 = r.Next(2, all/2);
+                part2 = r.Next(2, all / 2);
 
                 part1 = all - part2;
                 quest = r.Next(2, part2 * 2);
@@ -207,16 +208,16 @@ namespace ГенерацияТВ
 
             private void gen5()
             {
-                double part1, part2, part3,part4;
+                double part1, part2, part3, part4;
                 part1 = r.Next(5, 20);
-                part2 = r.Next(3,(int)(part1-2));
+                part2 = r.Next(3, (int)(part1 - 2));
                 part3 = part1 - part2;
                 part4 = r.Next(2, (int)part2);
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("5.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Устройство состоит из "+part1.ToString()+" элементов, из которых "+part3.ToString()+" изношены. При включении устройства включаются случайным образом "+part4.ToString()+" элемента. Найти вероятность того, что включенными окажутся неизношенные элементы.").Font(font).FontSize(12);
-                double result= (double)excel.WorksheetFunction.Combin(part2,part4)/ (double)excel.WorksheetFunction.Combin(part1,part4);
+                paragraph.Append("Устройство состоит из " + part1.ToString() + " элементов, из которых " + part3.ToString() + " изношены. При включении устройства включаются случайным образом " + part4.ToString() + " элемента. Найти вероятность того, что включенными окажутся неизношенные элементы.").Font(font).FontSize(12);
+                double result = (double)excel.WorksheetFunction.Combin(part2, part4) / (double)excel.WorksheetFunction.Combin(part1, part4);
                 allresult[variantIterator] += "\n5. " + result.ToString() + "; ";
             }
 
@@ -239,14 +240,14 @@ namespace ГенерацияТВ
             private void gen7()
             {
                 double part1, part2, part3;
-                part1 = r.Next(1, 8)/10d;
-                part2 = r.Next(1, 8)/10d;
-                part3 = r.Next(1, 8)/10d;
+                part1 = r.Next(1, 8) / 10d;
+                part2 = r.Next(1, 8) / 10d;
+                part3 = r.Next(1, 8) / 10d;
 
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("7.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Для разрушения моста достаточно попадания одной авиационной бомбы. Найти вероятность того, что мост будет разрушен, если на него сбросить три бомбы, вероятности попадания которых соответственно равны: p1 = "+part1.ToString()+", р2 = "+part2.ToString()+" р3 = "+part3.ToString()+".").Font(font).FontSize(12);
+                paragraph.Append("Для разрушения моста достаточно попадания одной авиационной бомбы. Найти вероятность того, что мост будет разрушен, если на него сбросить три бомбы, вероятности попадания которых соответственно равны: p1 = " + part1.ToString() + ", р2 = " + part2.ToString() + " р3 = " + part3.ToString() + ".").Font(font).FontSize(12);
                 double result = 1 - (1 - part1) * (1 - part2) * (1 - part3);
                 allresult[variantIterator] += "\n7. " + result.ToString() + "; ";
             }
@@ -260,7 +261,7 @@ namespace ГенерацияТВ
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("8.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Рабочий обслуживает 3 автомата. Вероятность брака для первого автомата равна " + part1.ToString() + "; для второго " + part2.ToString() + "; для третьего "+part3.ToString()+ ". Производительность всех автоматов одинакова. Изготовленные детали попадают на общий конвейер. Определить вероятность того, что взятая наугад деталь будет годной.").Font(font).FontSize(12);
+                paragraph.Append("Рабочий обслуживает 3 автомата. Вероятность брака для первого автомата равна " + part1.ToString() + "; для второго " + part2.ToString() + "; для третьего " + part3.ToString() + ". Производительность всех автоматов одинакова. Изготовленные детали попадают на общий конвейер. Определить вероятность того, что взятая наугад деталь будет годной.").Font(font).FontSize(12);
                 double result = 1d - (((1d / 3d) * part1) + ((1d / 3d) * part2) + ((1d / 3d) * part3));
                 if (result > 1) MessageBox.Show("Говно");
                 allresult[variantIterator] += "\n8. " + result.ToString() + "; ";
@@ -273,7 +274,7 @@ namespace ГенерацияТВ
                 part1 = r.Next(1, 9);
                 part2 = 10 - part1;
                 part3 = r.Next(85, 95);
-                part4 = (double)r.Next(75, (int)part3)/100d;
+                part4 = (double)r.Next(75, (int)part3) / 100d;
                 part3 /= 100d;
 
                 paragraph = document.InsertParagraph();
@@ -291,7 +292,7 @@ namespace ГенерацияТВ
                 double part1, part2, part3;
                 part1 = r.Next(3, 15);
                 part2 = r.Next(1, (int)part1 - 1);
-                part3 = (double)r.Next(15, 35)/100d;
+                part3 = (double)r.Next(15, 35) / 100d;
 
 
 
@@ -342,7 +343,7 @@ namespace ГенерацияТВ
                 string resultf = "φ(х) = 0,при x≤-1 φ(х) = " + part1.ToString() + ",при -1<x≤0 φ(х) = " + (part1 + part2).ToString() + ",при 0<x≤1 φ(х) = " + (part1 + part2 + part3).ToString() + ",при 1<x≤2" +
                     " φ(х) = " + (part1 + part2 + part3 + part4).ToString() + ",при 2<x≤3 φ(х) = " + (part1 + part2 + part3 + part4 + part5).ToString() + ",при x>3";
 
-                allresult[variantIterator] += "\n11. " + resultf+ "; ";
+                allresult[variantIterator] += "\n11. " + resultf + "; ";
 
 
                 paragraph = document.InsertParagraph();
@@ -350,28 +351,28 @@ namespace ГенерацияТВ
                 paragraph.Append("Найти М(ξ), D(ξ), σ(ξ) случайной величины ξ примера 11.").Font(font).FontSize(12);
                 double ME, DE, q;
                 ME = -1 * part1 + 0 * part2 + 1 * part3 + 2 * part4 + 3 * part5;
-                DE =  1*part1 + 0 * part2 + 1 * part3 + 4 * part4 + 9 * part5-ME*ME;
+                DE = 1 * part1 + 0 * part2 + 1 * part3 + 4 * part4 + 9 * part5 - ME * ME;
                 q = Math.Sqrt(DE);
-                allresult[variantIterator] += "\n12. М(ξ)=" + ME.ToString() + ", D(ξ)="+DE.ToString()+"; ";
+                allresult[variantIterator] += "\n12. М(ξ)=" + ME.ToString() + ", D(ξ)=" + DE.ToString() + "; ";
             }
-            
+
             private void gen12()
             {
-               
-           
-                            
+
+
+
             }
 
             private void gen13()
             {
-                string[] f1 = new string[] { "-π/2", "-π/3", "-π/4", "-π/6","0"};
+                string[] f1 = new string[] { "-π/2", "-π/3", "-π/4", "-π/6", "0" };
                 string[] f2 = new string[] { "π/2", "π/3", "π/4", "π/6" };
                 int part1 = r.Next(0, 4);
                 int part2 = r.Next(0, 3);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("13.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
                 paragraph.Append("Задана плотность распределения непрерывной случайной величины ξ:"
-                + "\n φ(х) = K*cos(x), ∀x ∈ ("+f1[part1]+" ; " + f2[part2]+ "]\n φ(х) = 0, ∀x ∉ (" + f1[part1] + " ; " + f2[part2] + "]\nНайти K и функцию распределения F(x).").Font(font).FontSize(12);
+                + "\n φ(х) = K*cos(x), ∀x ∈ (" + f1[part1] + " ; " + f2[part2] + "]\n φ(х) = 0, ∀x ∉ (" + f1[part1] + " ; " + f2[part2] + "]\nНайти K и функцию распределения F(x).").Font(font).FontSize(12);
                 string[,] kresultm = new string[,] { { "1/2", "-2√3 + 4", "√2 +2","2/3"},
                                                     {"4-2√3","√3/3","-2√2 + 2√3","-1+√3"},
                                                     {"2-√2","2√3-2√2","√2/2","-2+2√2" },
@@ -380,32 +381,32 @@ namespace ГенерацияТВ
                 string kresult = kresultm[part1, part2];
                 string fresult = "φ(х) = 0,при x≤" + f1[part1] +
                                  ", φ(х) =" + kresult + "sin(x),при " + f1[part1] + " < x ≤ " + f2[part2] + ", φ(х) =1,при x > " + f2[part2];
-                allresult[variantIterator] += "\n13. K= " + kresult.ToString()+", "+ fresult+"; ";
-            
+                allresult[variantIterator] += "\n13. K= " + kresult.ToString() + ", " + fresult + "; ";
 
-            double ME, DE, q;
+
+                double ME, DE, q;
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("14.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
                 paragraph.Append("ξ - непрерывная случайная величина примера 13. Найти М(ξ), D(ξ), σ(ξ).").Font(font).FontSize(12);
-                double[] f1num=new double[] { -Math.PI/2,-Math.PI/3,-Math.PI/4,-Math.PI/6,0 };
-                double[] f2num = new double[] { Math.PI / 2, Math.PI / 3, Math.PI / 4, Math.PI / 6};
+                double[] f1num = new double[] { -Math.PI / 2, -Math.PI / 3, -Math.PI / 4, -Math.PI / 6, 0 };
+                double[] f2num = new double[] { Math.PI / 2, Math.PI / 3, Math.PI / 4, Math.PI / 6 };
                 double[,] knum = new double[,] { { 1/2, -2*Math.Sqrt(3) + 4, Math.Sqrt(2) +2,2/3},
                                                  {4-2*Math.Sqrt(3),Math.Sqrt(3)/3,-2*Math.Sqrt(2) + 2*Math.Sqrt(3),-1*Math.Sqrt(3)},
                                                  {2-Math.Sqrt(2),2*Math.Sqrt(3)-2*Math.Sqrt(2),Math.Sqrt(2)/2,-2+2*Math.Sqrt(2) },
                                                  {2/3,Math.Sqrt(3) -1,2*Math.Sqrt(2)-2,1 },
                                                     {1,2*Math.Sqrt(3)/3,Math.Sqrt(2),2 } };
                 ME = knum[part1, part2] * (f2num[part2] * Math.Sin(f2num[part2]) + Math.Cos(f2num[part2]) - (f1num[part1] * Math.Sin(f1num[part1]) + Math.Cos(f1num[part1])));
-                DE = knum[part1, part2] * (f2num[part2] * f2num[part2] * Math.Sin(f2num[part2]) + 2d * f2num[part2] * Math.Cos(f2num[part2]) + 2d * Math.Sin(f2num[part2]) - (f1num[part1] * f2num[part1] * Math.Sin(f1num[part1]) + 2d * f1num[part1] * Math.Cos(f1num[part1]) + 2d * Math.Sin(f1num[part1])))-ME*ME;
+                DE = knum[part1, part2] * (f2num[part2] * f2num[part2] * Math.Sin(f2num[part2]) + 2d * f2num[part2] * Math.Cos(f2num[part2]) + 2d * Math.Sin(f2num[part2]) - (f1num[part1] * f2num[part1] * Math.Sin(f1num[part1]) + 2d * f1num[part1] * Math.Cos(f1num[part1]) + 2d * Math.Sin(f1num[part1]))) - ME * ME;
                 q = Math.Sqrt(DE);
 
-                allresult[variantIterator] += "\n14. М(ξ)= " + ME.ToString() + ", D(ξ)= " + DE.ToString() +", σ(ξ)= " + q.ToString() + "; ";
+                allresult[variantIterator] += "\n14. М(ξ)= " + ME.ToString() + ", D(ξ)= " + DE.ToString() + ", σ(ξ)= " + q.ToString() + "; ";
             }
 
-        
+
 
             private void gen14()
             {
-                
+
 
             }
 
@@ -413,20 +414,20 @@ namespace ГенерацияТВ
             {
                 double all, part1, part2;
                 all = r.Next(20, 50);
-                part1 = r.Next(10, (int)(all - 2))*100d;
+                part1 = r.Next(10, (int)(all - 2)) * 100d;
                 all *= 100;
                 part2 = (double)r.Next(1, 9) / 10d;
                 double x = (part1 - all * part2) / Math.Sqrt(all * part2 * (1 - part2));
-                double result = (double)excel.WorksheetFunction.Norm_S_Dist(x,false) / (double)Math.Sqrt(all * part2 * (1d - part2));
+                double result = (double)excel.WorksheetFunction.Norm_S_Dist(x, false) / (double)Math.Sqrt(all * part2 * (1d - part2));
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("15.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Вероятность наступления события А в одном опыте равна " + part2.ToString() + ". Найти вероятность того, что событие А наступит " + part1.ToString() + " раз в "+all.ToString()+ " опытах.").Font(font).FontSize(12);
+                paragraph.Append("Вероятность наступления события А в одном опыте равна " + part2.ToString() + ". Найти вероятность того, что событие А наступит " + part1.ToString() + " раз в " + all.ToString() + " опытах.").Font(font).FontSize(12);
                 allresult[variantIterator] += "\n15. " + result.ToString() + "; ";
             }
 
             private void gen16()
             {
-                
+
                 double a, q;
 
                 a = (double)randInt(5, 20);
@@ -441,21 +442,21 @@ namespace ГенерацияТВ
                 if (result > 1) MessageBox.Show("Говно");
                 allresult[variantIterator] += "\n16. " + result.ToString() + "; ";
             }
-            
+
             private void gen17()
             {
                 double all, part1, part2, result;
                 all = r.Next(50, 100);
                 part1 = (double)r.Next(5, 9) / 10d;
-                part2 = (double)r.Next((int)(all * (part1-0.05)), (int)(all * part1)) * 100d;
+                part2 = (double)r.Next((int)(all * (part1 - 0.05)), (int)(all * part1)) * 100d;
                 all *= 100;
                 double x1, x2;
-                x1 = (part2 - all * part1) / Math.Sqrt(all * part1* (1d - part1));
+                x1 = (part2 - all * part1) / Math.Sqrt(all * part1 * (1d - part1));
                 x2 = (0d - all * part1) / Math.Sqrt(all * part1 * (1d - part1));
-                result = ((double)excel.WorksheetFunction.Norm_S_Dist(x1,true) - 0.5) - ((double)excel.WorksheetFunction.NormSDist(x2) - 0.5);
+                result = ((double)excel.WorksheetFunction.Norm_S_Dist(x1, true) - 0.5) - ((double)excel.WorksheetFunction.NormSDist(x2) - 0.5);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("17.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Вероятность появления события в каждом из " + all.ToString() + " независимых испытании постоянна и равна " + part1.ToString() + ". Найти вероятность того, что событие появится не более чем "+part2.ToString()+" раз.").Font(font).FontSize(12);
+                paragraph.Append("Вероятность появления события в каждом из " + all.ToString() + " независимых испытании постоянна и равна " + part1.ToString() + ". Найти вероятность того, что событие появится не более чем " + part2.ToString() + " раз.").Font(font).FontSize(12);
                 if (result > 1) MessageBox.Show("Говно");
                 allresult[variantIterator] += "\n17. " + result.ToString() + "; ";
             }
@@ -467,10 +468,10 @@ namespace ГенерацияТВ
                 part1 = r.Next(1, 8);
                 part2 = r.Next(1, 10 - (int)part1);
                 part3 = 10 - part1 - part2;
-                part4 = r.Next(0, (int)part1)/10d;
-                part1 = Math.Abs(part1/10d - part4);
+                part4 = r.Next(0, (int)part1) / 10d;
+                part1 = Math.Abs(part1 / 10d - part4);
                 part5 = r.Next(0, (int)part2) / 10d;
-                part2 = Math.Abs(part2/10d - part5);
+                part2 = Math.Abs(part2 / 10d - part5);
                 part6 = r.Next(0, (int)part3) / 10d;
                 part3 = Math.Abs(part3 / 10d - part6);
                 paragraph = document.InsertParagraph();
@@ -500,7 +501,7 @@ namespace ГенерацияТВ
                 Dn = (part1 + part4) - Mn * Mn;
                 MEn = 1 * (-1) * part4 + 1 * 1 + part6;
                 DEn = 1 * 1 * part4 + 1 * 1 + part6 - MEn * MEn;
-                allresult[variantIterator] += "\n18.  М(ξ)= " + ME.ToString() + ", D(ξ)= " + DE.ToString() + ", М(η)= " + Mn.ToString() + ", D(η)= " + Dn.ToString() + ", М(ξη)= " + MEn.ToString() + ", D(ξη)= "+DEn.ToString()+". ";
+                allresult[variantIterator] += "\n18.  М(ξ)= " + ME.ToString() + ", D(ξ)= " + DE.ToString() + ", М(η)= " + Mn.ToString() + ", D(η)= " + Dn.ToString() + ", М(ξη)= " + MEn.ToString() + ", D(ξη)= " + DEn.ToString() + ". ";
             }
 
 
@@ -518,6 +519,11 @@ namespace ГенерацияТВ
             Gen gen = new Gen(countVariants);
 
         }
-        
+
+        private void addStudentsButton_Click(object sender, EventArgs e)
+        {
+            Form addStudents = new addStudentsForm();
+            addStudents.Show();
+        }
     }
 }
