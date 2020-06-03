@@ -27,3 +27,4 @@ F:\GitHu\TerVerGeneration\ГенерацияТВ\obj\Debug\ГенерацияТ�
 F:\GitHu\TerVerGeneration\ГенерацияТВ\obj\Debug\ГенерацияТВ.csproj.ResolveComReference.cache
 C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.csproj.ResolveComReference.cache
 C:\Users\Super\source\repos\ГенерацияТВ\ГенерацияТВ\obj\Debug\ГенерацияТВ.addStudentsForm.resources
+F:\GitHu\TerVerGeneration\ГенерацияТВ\obj\Debug\ГенерацияТВ.addStudentsForm.resources
