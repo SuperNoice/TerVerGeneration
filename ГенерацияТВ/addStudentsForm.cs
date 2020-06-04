@@ -26,6 +26,8 @@ namespace ГенерацияТВ
         {
             if (fioCheckBox.Checked == true)
             {
+                if (fioFormatComboBox.Text != "Иванов Иван Иванович" && fioFormatComboBox.Text != "Иванов И. И.") { MessageBox.Show("Неверный формат ФИО!"); return; }
+
                 char[] warnSymbol = { '/', ',', '\\', '\'', ']', '[', '{', ';', '}', ':', '"', '+', '=', '_', '-', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '№', '?', '`', '~', '<', '>' };
                 if (fioFormatComboBox.Text == "Иванов Иван Иванович") warnSymbol = warnSymbol.Append('.').ToArray();
 
@@ -91,6 +93,18 @@ namespace ГенерацияТВ
         {
             if (fioCheckBox.Checked == false) fioFormatGroupBox.Visible = false;
             else fioFormatGroupBox.Visible = true;
+        }
+
+        private void fioFormatComboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (fioFormatComboBox.Text != "Иванов Иван Иванович" && fioFormatComboBox.Text != "Иванов И. И.")
+            {
+                fioFormatComboBox.BackColor = Color.FromArgb(255, 128, 128);
+            }
+            if (fioFormatComboBox.Text == "Иванов Иван Иванович" || fioFormatComboBox.Text == "Иванов И. И.")
+            {
+                fioFormatComboBox.BackColor = Color.FromArgb(255, 255, 255);
+            }
         }
     }
 }

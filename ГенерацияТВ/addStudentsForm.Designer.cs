@@ -101,6 +101,7 @@
             // 
             this.fioFormatComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.fioFormatComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.fioFormatComboBox.BackColor = System.Drawing.Color.White;
             this.fioFormatComboBox.FormattingEnabled = true;
             this.fioFormatComboBox.Items.AddRange(new object[] {
             "Иванов Иван Иванович",
@@ -110,6 +111,7 @@
             this.fioFormatComboBox.Size = new System.Drawing.Size(150, 21);
             this.fioFormatComboBox.TabIndex = 4;
             this.fioFormatComboBox.Text = "Иванов Иван Иванович";
+            this.fioFormatComboBox.TextChanged += new System.EventHandler(this.fioFormatComboBox_TextChanged);
             // 
             // fioFormatGroupBox
             // 
