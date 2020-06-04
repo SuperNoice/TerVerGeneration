@@ -36,9 +36,9 @@
             this.studentsDataGrid = new System.Windows.Forms.DataGridView();
             this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.splitCheckBox = new System.Windows.Forms.CheckBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.addStudentsButton = new System.Windows.Forms.Button();
-            this.splitCheckBox = new System.Windows.Forms.CheckBox();
             this.clearButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.studentsDataGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -85,11 +85,11 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(416, 346);
+            this.label3.Location = new System.Drawing.Point(244, 345);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(168, 13);
+            this.label3.Size = new System.Drawing.Size(338, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Андрей Галан, Лозовик Леонид";
+            this.label3.Text = "Андрей Галан, Лозовик Леонид, Киселева Анна, Темный Кирилл";
             // 
             // studentsDataGrid
             // 
@@ -131,6 +131,16 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
+            // splitCheckBox
+            // 
+            this.splitCheckBox.AutoSize = true;
+            this.splitCheckBox.Location = new System.Drawing.Point(17, 48);
+            this.splitCheckBox.Name = "splitCheckBox";
+            this.splitCheckBox.Size = new System.Drawing.Size(180, 17);
+            this.splitCheckBox.TabIndex = 9;
+            this.splitCheckBox.Text = "Варианты в отдельные файлы";
+            this.splitCheckBox.UseVisualStyleBackColor = true;
+            // 
             // progressBar
             // 
             this.progressBar.Location = new System.Drawing.Point(6, 151);
@@ -147,16 +157,6 @@
             this.addStudentsButton.Text = "Добавить студентов";
             this.addStudentsButton.UseVisualStyleBackColor = true;
             this.addStudentsButton.Click += new System.EventHandler(this.addStudentsButton_Click);
-            // 
-            // splitCheckBox
-            // 
-            this.splitCheckBox.AutoSize = true;
-            this.splitCheckBox.Location = new System.Drawing.Point(17, 48);
-            this.splitCheckBox.Name = "splitCheckBox";
-            this.splitCheckBox.Size = new System.Drawing.Size(180, 17);
-            this.splitCheckBox.TabIndex = 9;
-            this.splitCheckBox.Text = "Варианты в отдельные файлы";
-            this.splitCheckBox.UseVisualStyleBackColor = true;
             // 
             // clearButton
             // 
