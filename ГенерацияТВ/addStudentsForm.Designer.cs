@@ -81,7 +81,7 @@
             this.SaveStudentsButton.Name = "SaveStudentsButton";
             this.SaveStudentsButton.Size = new System.Drawing.Size(78, 34);
             this.SaveStudentsButton.TabIndex = 2;
-            this.SaveStudentsButton.Text = "Save";
+            this.SaveStudentsButton.Text = "Добавить";
             this.SaveStudentsButton.UseVisualStyleBackColor = true;
             this.SaveStudentsButton.Click += new System.EventHandler(this.SaveStudentsButton_Click);
             // 

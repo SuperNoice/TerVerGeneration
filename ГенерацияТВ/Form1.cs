@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Xceed.Words.NET;
 using Xceed.Document.NET;
-using Microsoft.Office.Interop.Excel;
 using IExcel = Microsoft.Office.Interop.Excel;
-using System.Diagnostics;
-using System.IO;
 
 namespace ГенерацияТВ
 {
@@ -140,6 +131,7 @@ namespace ГенерацияТВ
                 if (form1.splitCheckBox.Checked == false)
                 {
                     SaveFileDialog saveFile = new SaveFileDialog();
+                    saveFile.FileName = "Типовой вариант";
                     saveFile.DefaultExt = ".docx";
                     saveFile.AddExtension = true;
                     saveFile.Title = "Сохранить как...";
@@ -684,7 +676,15 @@ namespace ГенерацияТВ
 
             UseWaitCursor = true;
 
-            Gen gen = new Gen(countVariants, this);
+            try
+            {
+                Gen gen = new Gen(countVariants, this);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Проверьте наличие библиотек: Xceed.Document.NET.dll и Xceed.Words.NET.dll в папке с программой!\nУбедитесь что Word и Exel установлены!", "ОШИБКА!");
+            }
+            
 
             progressBar.Value = 0;
 
