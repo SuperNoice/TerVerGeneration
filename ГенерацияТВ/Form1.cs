@@ -447,7 +447,7 @@ namespace ГенерацияТВ
                 part3 /= 10d;
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("11.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Случайная величина ξ имеет распределения вероятностей, представленное таблицей:").Font(font).FontSize(12);
+                paragraph.Append("Случайная величина X имеет распределения вероятностей, представленное таблицей:").Font(font).FontSize(12);
                 Table table = document.AddTable(2, 6);
                 table.Alignment = Alignment.center;
                 table.SetColumnWidth(0, 40);
@@ -456,7 +456,7 @@ namespace ГенерацияТВ
                 table.SetColumnWidth(3, 40);
                 table.SetColumnWidth(4, 40);
                 table.SetColumnWidth(5, 40);
-                table.Rows[0].Cells[0].Paragraphs[0].Append("ξ").Alignment = Alignment.center;
+                table.Rows[0].Cells[0].Paragraphs[0].Append("X").Alignment = Alignment.center;
                 table.Rows[1].Cells[0].Paragraphs[0].Append("P(x)").Alignment = Alignment.center;
                 table.Rows[0].Cells[1].Paragraphs[0].Append("-1").Alignment = Alignment.center;
                 table.Rows[0].Cells[2].Paragraphs[0].Append("0").Alignment = Alignment.center;
@@ -476,24 +476,24 @@ namespace ГенерацияТВ
 
 
 
-                string resultf = "φ(х)=0, при x≤-1\n      φ(х)=" + part1.ToString() + ", при -1<x≤0\n" +
-                    "      φ(х)=" + (part1 + part2).ToString() + ", при 0<x≤1\n" +
-                    "      φ(х)=" + (part1 + part2 + part3).ToString() + ", при 1<x≤2\n" +
-                    "      φ(х)=" + (part1 + part2 + part3 + part4).ToString() + ", при 2<x≤3\n" +
-                    "      φ(х)=" + (part1 + part2 + part3 + part4 + part5).ToString() + ", при x>3";
+                string resultf = "p(х)=0, при x≤-1\n      p(х)=" + part1.ToString() + ", при -1<x≤0\n" +
+                    "      p(х)=" + (part1 + part2).ToString() + ", при 0<x≤1\n" +
+                    "      p(х)=" + (part1 + part2 + part3).ToString() + ", при 1<x≤2\n" +
+                    "      p(х)=" + (part1 + part2 + part3 + part4).ToString() + ", при 2<x≤3\n" +
+                    "      p(х)=" + (part1 + part2 + part3 + part4 + part5).ToString() + ", при x>3";
 
                 allresult[variantIterator] += "\n11. " + resultf + ";";
 
 
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("12.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Найти М(ξ), D(ξ), σ(ξ) случайной величины ξ примера 11.").Font(font).FontSize(12);
+                paragraph.Append("Найти М(X), D(X), σ(X) случайной величины X примера 11.").Font(font).FontSize(12);
                 double ME, DE, q;
                 ME = -1 * part1 + 0 * part2 + 1 * part3 + 2 * part4 + 3 * part5;
                 DE = 1 * part1 + 0 * part2 + 1 * part3 + 4 * part4 + 9 * part5 - ME * ME;
                 q = Math.Sqrt(DE);
 
-                allresult[variantIterator] += "\n12. М(ξ)=" + doubleNormalize(ME.ToString()) + "\n      D(ξ)=" + doubleNormalize(DE.ToString()) + "\n      σ(ξ)= " + doubleNormalize(q.ToString()) + "; ";
+                allresult[variantIterator] += "\n12. М(X)=" + doubleNormalize(ME.ToString()) + "\n      D(X)=" + doubleNormalize(DE.ToString()) + "\n      σ(X)= " + doubleNormalize(q.ToString()) + "; ";
             }
 
             private void gen13_14()
@@ -505,7 +505,7 @@ namespace ГенерацияТВ
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("13.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
                 paragraph.Append("Задана плотность распределения непрерывной случайной величины ξ:"
-                + "\n φ(х)=K*cos(x), ∀x ∈ (" + f1[part1] + " ; " + f2[part2] + "]\n φ(х)=0, ∀x ∉ (" + f1[part1] + " ; " + f2[part2] + "]\nНайти K и функцию распределения F(x).").Font(font).FontSize(12);
+                + "\n p(х)=K*cos(x), ∀x ∈ (" + f1[part1] + " ; " + f2[part2] + "]\n p(х)=0, ∀x ∉ (" + f1[part1] + " ; " + f2[part2] + "]\nНайти K и функцию распределения F(x).").Font(font).FontSize(12);
 
                 string[,] kresultm = new string[,] { { "1/2", "(-2√3 + 4)", "(√2 +2)","2/3"},
                                                      {"(4-2√3)","√3/3","(-2√2 + 2√3)","(-1+√3)"},
@@ -514,16 +514,16 @@ namespace ГенерацияТВ
                                                      {"1","2√3/3","√2","2" } };
                 string kresult = kresultm[part1, part2];
 
-                string fresult = "\n      φ(х)=0,при x≤" + f1[part1] +
-                                 "\n      φ(х)=" + kresult + "*sin(x),при " + f1[part1] + " < x ≤ " + f2[part2] +
-                                 "\n      φ(х)=1,при x > " + f2[part2];
+                string fresult = "\n      p(х)=0,при x≤" + f1[part1] +
+                                 "\n      p(х)=" + kresult + "*sin(x),при " + f1[part1] + " < x ≤ " + f2[part2] +
+                                 "\n      p(х)=1,при x > " + f2[part2];
 
                 allresult[variantIterator] += "\n13. K= " + kresult.ToString() + fresult + "; ";
 
                 double ME, DE, q;
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("14.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("ξ - непрерывная случайная величина примера 13. Найти М(ξ), D(ξ), σ(ξ).").Font(font).FontSize(12);
+                paragraph.Append("X - непрерывная случайная величина примера 13. Найти М(X), D(X), σ(X).").Font(font).FontSize(12);
 
                 double[] f1num = new double[] { -Math.PI / 2d, -Math.PI / 3d, -Math.PI / 4d, -Math.PI / 6d, 0d };
                 double[] f2num = new double[] { Math.PI / 2d, Math.PI / 3d, Math.PI / 4d, Math.PI / 6d };
@@ -538,9 +538,9 @@ namespace ГенерацияТВ
                 q = Math.Sqrt(DE);
 
                 allresult[variantIterator] +=
-                    "\n14. М(ξ)= " + doubleNormalize(ME.ToString()) +
-                    "\n      D(ξ)= " + doubleNormalize(DE.ToString()) +
-                    "\n      σ(ξ)= " + doubleNormalize(q.ToString()) + ";";
+                    "\n14. М(X)= " + doubleNormalize(ME.ToString()) +
+                    "\n      D(X)= " + doubleNormalize(DE.ToString()) +
+                    "\n      σ(X)= " + doubleNormalize(q.ToString()) + ";";
             }
 
             private void gen15()
@@ -572,7 +572,7 @@ namespace ГенерацияТВ
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("16.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
 
-                paragraph.Append("ξ - нормально распределенная случайная величина с парамет­рами а=" + a.ToString() + " σ=" + q.ToString() + ". Найти Р(0,3<ξ<1).").Font(font).FontSize(12);
+                paragraph.Append("X - нормально распределенная случайная величина с парамет­рами а=" + a.ToString() + " σ=" + q.ToString() + ". Найти Р(0,3<X<1).").Font(font).FontSize(12);
 
                 if (result > 1) MessageBox.Show("Говно");
                 allresult[variantIterator] += "\n16. " + doubleNormalize(result.ToString()) + "; ";
@@ -616,14 +616,14 @@ namespace ГенерацияТВ
                 part3 = Math.Abs(part3 / 10d - part6);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("18.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Дана таблица распределения вероятностей двумерной случайной величины (ξ,η)").Font(font).FontSize(12);
+                paragraph.Append("Дана таблица распределения вероятностей двумерной случайной величины (y,x)").Font(font).FontSize(12);
                 Table table = document.AddTable(3, 4);
                 table.Alignment = Alignment.center;
                 table.SetColumnWidth(0, 40);
                 table.SetColumnWidth(1, 40);
                 table.SetColumnWidth(2, 40);
                 table.SetColumnWidth(3, 40);
-                table.Rows[0].Cells[0].Paragraphs[0].Append("ξ/η").Alignment = Alignment.center;
+                table.Rows[0].Cells[0].Paragraphs[0].Append("y/x").Alignment = Alignment.center;
                 table.Rows[0].Cells[1].Paragraphs[0].Append("-1").Alignment = Alignment.center;
                 table.Rows[0].Cells[2].Paragraphs[0].Append("0").Alignment = Alignment.center;
                 table.Rows[0].Cells[3].Paragraphs[0].Append("1").Alignment = Alignment.center;
@@ -638,7 +638,7 @@ namespace ГенерацияТВ
 
                 paragraph = document.InsertParagraph();
                 paragraph.InsertTableBeforeSelf(table);
-                paragraph.Append("Найти М(ξ), М(η), М(ξη), D(ξ), D(η), D(ξη).").Font(font).FontSize(12);
+                paragraph.Append("Найти М(y), М(x), М(yx), D(y), D(x), D(yx).").Font(font).FontSize(12);
                 ME = part4 + part5 + part6;
                 DE = part4 + part5 + part6 - ME * ME;
                 Mn = (part1 + part4) * (-1) + part3 + part6;
@@ -646,12 +646,12 @@ namespace ГенерацияТВ
 
                 MEn = 1d * (-1d) * part4 + 1d * 1d * part6;
                 DEn = 1d * 1d * part4 + 1d * 1d + part6 - MEn * MEn;
-                allresult[variantIterator] += "\n18. М(ξ)= " + ME.ToString() +
-                    "\n      D(ξ)= " + doubleNormalize(DE.ToString()) +
-                    "\n      М(η)= " + doubleNormalize(Mn.ToString()) +
-                    "\n      D(η)= " + doubleNormalize(Dn.ToString()) +
-                    "\n      М(ξη)= " + doubleNormalize(MEn.ToString()) +
-                    "\n      D(ξη)= " + doubleNormalize(DEn.ToString()) + ". ";
+                allresult[variantIterator] += "\n18. М(y)= " + ME.ToString() +
+                    "\n      D(y)= " + doubleNormalize(DE.ToString()) +
+                    "\n      М(x)= " + doubleNormalize(Mn.ToString()) +
+                    "\n      D(x)= " + doubleNormalize(Dn.ToString()) +
+                    "\n      М(yx)= " + doubleNormalize(MEn.ToString()) +
+                    "\n      D(yx)= " + doubleNormalize(DEn.ToString()) + ". ";
 
             }
 
