@@ -553,6 +553,7 @@ namespace ГенерацияТВ
                 all *= 100;
                 double x = (double)r.Next(-200, 200) / 100d;
                 part1 = (int)(x * Math.Sqrt(all * part2 * (1d - part2)) + all * part2);
+                x = (part1 - all * part2) / Math.Sqrt(all * part2 * (1d - part2));
                 double result = (double)excel.WorksheetFunction.Norm_S_Dist(x, false) / (double)Math.Sqrt(all * part2 * (1d - part2));
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("15.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
