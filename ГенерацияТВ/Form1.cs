@@ -569,7 +569,7 @@ namespace ГенерацияТВ
                 a = (double)randInt(5, 20);
                 q = (double)randInt(1, (int)a) / 10d;
                 a /= 10d;
-                double result = (excel.WorksheetFunction.NormSDist((1d - a) / q) - 0.5) - (excel.WorksheetFunction.NormSDist((0.3 - a) / q) - 0.5);
+                double result = (excel.WorksheetFunction.NormSDist((double)((int)(((1d - a) / q) * 100)) / 100d) - 0.5) - (excel.WorksheetFunction.NormSDist((double)((int)(((0.3 - a) / q) * 100)) / 100d) - 0.5); ;
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("16.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
 
@@ -643,10 +643,10 @@ namespace ГенерацияТВ
                 ME = part4 + part5 + part6;
                 DE = part4 + part5 + part6 - ME * ME;
                 Mn = (part1 + part4) * (-1) + part3 + part6;
-                Dn = (part1 + part4) - Mn * Mn;
+                Dn = (part1 + part4) + part3 + part6 - Mn * Mn;
 
                 MEn = 1d * (-1d) * part4 + 1d * 1d * part6;
-                DEn = 1d * 1d * part4 + 1d * 1d + part6 - MEn * MEn;
+                DEn = 1d * 1d * part4 + 1d * 1d *part6 - MEn * MEn;
                 allresult[variantIterator] += "\n18. М(y)= " + ME.ToString() +
                     "\n      D(y)= " + doubleNormalize(DE.ToString()) +
                     "\n      М(x)= " + doubleNormalize(Mn.ToString()) +
