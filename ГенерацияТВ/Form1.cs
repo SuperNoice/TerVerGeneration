@@ -250,8 +250,8 @@ namespace ГенерацияТВ
 
                 if (count > 4)
                 {
-                    double temp = Convert.ToDouble(strIn)*100000;
-                    if (temp % 10 >= 5) 
+                    double temp = Convert.ToDouble(strIn) * 100000;
+                    if (temp % 10 >= 5)
                     {
                         temp += 10;
                         temp /= 100000;
@@ -292,7 +292,7 @@ namespace ГенерацияТВ
                 resulta = (double)excel.WorksheetFunction.Combin(part1, 2) / (double)excel.WorksheetFunction.Combin(all, 2);
                 resultb = (double)excel.WorksheetFunction.Combin(part2, 2) / (double)excel.WorksheetFunction.Combin(all, 2);
                 resultd = 1 - (double)excel.WorksheetFunction.Combin(part2, 2) / (double)excel.WorksheetFunction.Combin(all, 2);
-                allresult[variantIterator] += "\n1. a) " + doubleNormalize(resulta.ToString()) + ";\n    б) " + doubleNormalize(resultb.ToString()) + ";\n    в) " + doubleNormalize(resultd.ToString());
+                allresult[variantIterator] += "\n1. a) " + doubleNormalize(resulta.ToString()) + "\n    б) " + doubleNormalize(resultb.ToString()) + "\n    в) " + doubleNormalize(resultd.ToString()) + ";";
             }
 
             private void gen2()
@@ -655,7 +655,7 @@ namespace ГенерацияТВ
                 Dn = (part1 + part4) + part3 + part6 - Mn * Mn;
 
                 MEn = 1d * (-1d) * part4 + 1d * 1d * part6;
-                DEn = 1d * 1d * part4 + 1d * 1d *part6 - MEn * MEn;
+                DEn = 1d * 1d * part4 + 1d * 1d * part6 - MEn * MEn;
                 allresult[variantIterator] += "\n18. М(y)= " + ME.ToString() +
                     "\n      D(y)= " + doubleNormalize(DE.ToString()) +
                     "\n      М(x)= " + doubleNormalize(Mn.ToString()) +
@@ -694,7 +694,7 @@ namespace ГенерацияТВ
             {
                 MessageBox.Show("Проверьте наличие библиотек: Xceed.Document.NET.dll и Xceed.Words.NET.dll в папке с программой!\nУбедитесь что Word и Exel установлены!", "ОШИБКА!");
             }
-            
+
 
             progressBar.Value = 0;
 
