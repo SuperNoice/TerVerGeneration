@@ -250,6 +250,14 @@ namespace ГенерацияТВ
 
                 if (count > 4)
                 {
+                    double temp = Convert.ToDouble(strIn)*100000;
+                    if (temp % 10 >= 5) 
+                    {
+                        temp += 10;
+                        temp /= 100000;
+                        strIn = Convert.ToString(temp);
+                    }
+
                     string strOut = "";
                     ptr = -1;
                     do
