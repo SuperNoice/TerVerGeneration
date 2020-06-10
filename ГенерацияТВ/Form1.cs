@@ -598,6 +598,7 @@ namespace ГенерацияТВ
                 double x1, x2;
                 x1 = (double)r.Next(-250, 250) / 100d;
                 part2 = (int)(x1 * Math.Sqrt(all * part1 * (1d - part1)) + all * part1);
+                x1 = (part2 - all * part1) / Math.Sqrt(all * part1 * (1d - part1));
                 x2 = (0d - all * part1) / Math.Sqrt(all * part1 * (1d - part1));
                 double F1 = (double)excel.WorksheetFunction.Norm_S_Dist(x1, true) - 0.5;
                 double F2 = (double)excel.WorksheetFunction.Norm_S_Dist(x2, true) - 0.5;
