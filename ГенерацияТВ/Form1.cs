@@ -508,11 +508,11 @@ namespace ГенерацияТВ
             {
                 string[] f1 = new string[] { "-π/2", "-π/3", "-π/4", "-π/6", "0" };
                 string[] f2 = new string[] { "π/2", "π/3", "π/4", "π/6" };
-                int part1 = r.Next(0, 4);
-                int part2 = r.Next(0, 3);
+                int part1 = randInt(0, 4);
+                int part2 = randInt(0, 3);
                 paragraph = document.InsertParagraph();
                 paragraph.AppendLine("13.  ").Font(font).FontSize(12).Bold().Alignment = Alignment.left;
-                paragraph.Append("Задана плотность распределения непрерывной случайной величины ξ:"
+                paragraph.Append("Задана плотность распределения непрерывной случайной величины x:"
                 + "\n p(х)=K*cos(x), ∀x ∈ (" + f1[part1] + " ; " + f2[part2] + "]\n p(х)=0, ∀x ∉ (" + f1[part1] + " ; " + f2[part2] + "]\nНайти K и функцию распределения F(x).").Font(font).FontSize(12);
 
                 string[,] kresultm = new string[,] { { "1/2", "(-2√3 + 4)", "(√2 +2)","2/3"},
